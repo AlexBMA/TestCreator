@@ -3,6 +3,7 @@ package services;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 import model.Intrebare;
 import model.Test;
@@ -71,7 +72,27 @@ public class TestServices {
 		File xmlFile = new File(filePath + "\\" + fileName.substring(fileName.lastIndexOf("\\") + 1));
 		System.out.println(xmlFile.getAbsolutePath());
 		
-		XML.saveXMLToateTestele(xmlFile, toateTestele);
+		if(toateTestele == null) System.out.println(" toate teste null");
+			else	XML.saveXMLToateTestele(xmlFile, toateTestele);
+		
+	}
+	
+	public static void afis()
+	{
+		Set<String> keys = toateTestele.keySet();
+		
+		
+		for(String k: keys)
+		{
+			Test t = toateTestele.get(k);
+			System.out.println(k+"  key");
+			System.out.println(t.getNumeTest());
+			System.out.println(t.getIdTest()+"  $$$$");
+			System.out.println(t.getNumeCreator());
+			
+			t.getListaIntrebari();
+		}
+		
 		
 	}
 }

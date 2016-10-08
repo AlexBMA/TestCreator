@@ -12,6 +12,7 @@ public class Intrebare {
 	private ArrayList<Raspuns> listaRapunsuri;
 
 	public Intrebare() {
+		this.idIntrebare=0;
 		this.textIntrebare = "";
 		this.nrRaspunsuriCorecte = 0;
 		this.nrRaspunsuri = 0;

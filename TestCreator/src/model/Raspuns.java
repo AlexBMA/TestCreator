@@ -13,6 +13,7 @@ public class Raspuns {
 		super();
 		this.textRaspuns = textRaspuns;
 		this.advFals = advFals;
+		this.idRaspuns=0;
 	}
 
 	public String getTextRaspuns() {

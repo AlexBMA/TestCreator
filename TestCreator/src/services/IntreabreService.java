@@ -40,4 +40,10 @@ public class IntreabreService {
 		
 	}
 	
+	public static void afisIntrebari(Intrebare i)
+	{
+		
+		System.out.println("Text intrebare: "+i.getTextIntrebare());
+	}
+	
 }

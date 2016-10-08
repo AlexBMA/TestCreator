@@ -43,8 +43,9 @@ public class FinalizeazaTestServlet extends HttpServlet {
 		
 		TestServices.addIntrebariLaTest(IntreabreService.getListaIntrebari(), numeTest);
 		
-		String fileName="";
+		String fileName="D:";
 		
+		//TestServices.afis();
 		TestServices.salvezaTestInXml(fileName);
 		
 	}

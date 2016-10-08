@@ -19,7 +19,7 @@ import model.Test;
 public class XML {
 
 	
-	public static void saveXMLToateTestele(File xml,LinkedHashMap<String, Test> toateTestele)
+	public static void saveXMLToateTestele(File xmlFile,LinkedHashMap<String, Test> toateTestele)
 	{
 		Document doc = new Document();
 		Element theRoot = new Element("toate_testele");
@@ -36,7 +36,23 @@ public class XML {
 		for( String i: Keys)
 		{
 			
+			Test testTemp = toateTestele.get(i);
+			Element t = saveXMLHelperTest(testTemp);
+			teste.addContent(t);
 		}
+		theRoot.addContent(teste);
+		
+		XMLOutputter xmlOutput = new XMLOutputter(Format.getPrettyFormat());
+		
+		
+		try {
+			xmlOutput.output(doc, new FileOutputStream(xmlFile));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void saveXMLTest(File xmlFile,Test test)
@@ -104,10 +120,13 @@ public class XML {
 	
 	public static Element saveXMLHelperIntrebari(Intrebare i)
 	{
-		Element intreabre = new Element("intrebare");
+		Element intrebare = new Element("intrebare");
 		
 		Element idIntrebare = new Element("id_Intreabre");
 		idIntrebare.addContent(i.getIdIntrebare()+"");
+		
+		Element textIntrebare = new Element("text_Intrebare");
+		textIntrebare.addContent(i.getTextIntrebare());
 		
 		Element nrRaspunsuriCorecte = new Element("nr_Raspunsuri_Corecte");
 		nrRaspunsuriCorecte.addContent(i.getNrRaspunsuriCorecte()+"");
@@ -127,8 +146,14 @@ public class XML {
 			raspunsuri.addContent(saveXMLHelperRaspunsuri(r));
 		}
 		
+		intrebare.addContent(idIntrebare);
+		intrebare.addContent(textIntrebare);
+		intrebare.addContent(nrRaspunsuri);
+		intrebare.addContent(nrRaspunsuriCorecte);
+		intrebare.addContent(raspunsuri);
 		
-		return intreabre;
+		
+		return intrebare;
 	}
 	
 	public static Element saveXMLHelperRaspunsuri(Raspuns r)

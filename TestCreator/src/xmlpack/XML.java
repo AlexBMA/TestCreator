@@ -9,6 +9,8 @@ import java.util.Set;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -176,8 +178,30 @@ public class XML {
 		return raspuns;
 	}
 	
-	public ArrayList<Test> loadXML()
+	public static LinkedHashMap<String, Test> incarcaToateTesteleDinXml(String filePath)
 	{
+		File fisier = new File(filePath);
+		
+		SAXBuilder builder = new SAXBuilder();
+		
+		Document readDoc;
+		try {
+			readDoc = builder.build(fisier);
+			
+			System.out.println("The root element: \t" + readDoc.getRootElement() + "\n");
+			
+			Element root = readDoc.getRootElement();
+			
+			
+			
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return null;
 	}

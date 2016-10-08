@@ -46,9 +46,9 @@ public class FinalizeazaTestServlet extends HttpServlet {
 		String fileName="D:";
 		
 		
-		TestServices.salvezaTestInXml(fileName);
+		TestServices.salvezaTesteInXml(fileName);
 		
-		String page="index.jsp";
+		String page="ProfPage.jsp";
 		response.sendRedirect(page);
 		
 	}

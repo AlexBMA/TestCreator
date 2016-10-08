@@ -41,7 +41,7 @@ public class DB {
 	}
 	
 	
-	public void closeConn() {
+	public static void closeConn() {
 		try {
 
 			if (stmt != null)

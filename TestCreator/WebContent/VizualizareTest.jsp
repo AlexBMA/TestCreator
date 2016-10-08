@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Vizualizare test</title>
 </head>
 <body>
-
+	
+	<div>
+		
+		<h2>Nume Test: </h2>
+		<h2>Autor Test: </h2>
+		<h2>Numar intrebari: </h2>
+		
+		
+	
+	</div>
+	
 </body>
 </html>

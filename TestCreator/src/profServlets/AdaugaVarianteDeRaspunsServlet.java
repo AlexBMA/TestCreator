@@ -1,4 +1,4 @@
-package adminServlets;
+package profServlets;
 
 import java.io.IOException;
 

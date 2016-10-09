@@ -1,4 +1,4 @@
-package adminServlets;
+package profServlets;
 
 import java.io.IOException;
 
@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.IntreabreService;
+import services.TestServices;
+
 /**
- * Servlet implementation class AdaugaTextIntrebareSiNrRaspunsi
+ * Servlet implementation class CreateTestServlet
  */
-@WebServlet("/AdaugaTextIntrebareSiNrRaspunsi")
-public class AdaugaTextIntrebareSiNrRaspunsiServlet extends HttpServlet {
+@WebServlet("/CreateTestServlet")
+public class CreateTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdaugaTextIntrebareSiNrRaspunsiServlet() {
+    public CreateTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,6 +32,8 @@ public class AdaugaTextIntrebareSiNrRaspunsiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -37,39 +42,31 @@ public class AdaugaTextIntrebareSiNrRaspunsiServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
 		
-
-		String numeTest= request.getParameter("numeTest").trim();
-		String autorTest = request.getParameter("numeAutor").trim();
-		int nrIntrebari =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
+		String numeTest= request.getParameter("numetest").trim();
+		String autorTest = request.getParameter("numneautor").trim();
+		int nrIntrebari =  Integer.parseInt(request.getParameter("numarintrebari").trim());
 		
-			
-		String textIntrebare = request.getParameter("textIntrebare").trim();
+	//	System.out.println(numeTest);
+	//	System.out.println(autorTest);
+	//	System.out.println(nrIntrebari);
 		
-		int numarVariante = Integer.parseInt(request.getParameter("numarVariante").trim());
-		int numarVarianteCorecte = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
+		TestServices.createTest(numeTest, autorTest, nrIntrebari);
+		
+		IntreabreService.createListaIntrebari();
 		
 		
-		System.out.println(textIntrebare);
-		System.out.println(numarVariante);
-		System.out.println(numarVarianteCorecte);
-		
-		String path="AdaugaRaspuns.jsp";
-		
-		RequestDispatcher requestDispacher = request.getRequestDispatcher(path);
-		request.setAttribute("textIntrebare", textIntrebare);
-		request.setAttribute("numarVariante", numarVariante);
-		request.setAttribute("numarVarianteCorecte", numarVarianteCorecte);
+		String  path="TestCreated.jsp";	
+		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
 		
 		request.setAttribute("numeTest" , numeTest);
 		request.setAttribute("autorTest", autorTest);
 		request.setAttribute("numarIntrebari", nrIntrebari);
 		
-		requestDispacher.forward(request, response);
+		reqDispacher.forward(request, response);
 		
 		
-		
+		//doGet(request, response);
 		
 		
 	}

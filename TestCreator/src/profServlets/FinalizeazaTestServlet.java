@@ -1,29 +1,26 @@
-package adminServlets;
+package profServlets;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jdom2.test.cases.TestSerialization;
-
+import services.IntreabreService;
 import services.TestServices;
 
 /**
- * Servlet implementation class AdaugaIntrebareServlet
+ * Servlet implementation class FinalizeazaTest
  */
-@WebServlet("/AdaugaIntrebareServlet")
-public class AdaugaIntrebareServlet extends HttpServlet {
+@WebServlet("/FinalizeazaTest")
+public class FinalizeazaTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdaugaIntrebareServlet() {
+    public FinalizeazaTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,24 +38,18 @@ public class AdaugaIntrebareServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
 		
-		
-		String path = "AdaugaIntrebare.jsp";
 		String numeTest = request.getParameter("numeTest").trim();
 		
-		String numeAutor = TestServices.getNumeAutor(numeTest);
-		int numarIntrebari = TestServices.getNumarIntrebari(numeTest);
+		TestServices.addIntrebariLaTest(IntreabreService.getListaIntrebari(), numeTest);
+		
+		String fileName="C:\\Users\\Alexandru\\git\\TestCreator";
 		
 		
-		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
+		TestServices.salvezaTesteInXml(fileName);
 		
-		request.setAttribute("numeAutor", numeAutor);
-		request.setAttribute("numarIntrebari", numarIntrebari);
-		request.setAttribute("numeTest", numeTest);
-		
-		reqDispacher.forward(request, response);
-		
+		String page="ProfPage.jsp";
+		response.sendRedirect(page);
 		
 	}
 

@@ -1,26 +1,29 @@
-package adminServlets;
+package profServlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.IntreabreService;
+import org.jdom2.test.cases.TestSerialization;
+
 import services.TestServices;
 
 /**
- * Servlet implementation class FinalizeazaTest
+ * Servlet implementation class AdaugaIntrebareServlet
  */
-@WebServlet("/FinalizeazaTest")
-public class FinalizeazaTestServlet extends HttpServlet {
+@WebServlet("/AdaugaIntrebareServlet")
+public class AdaugaIntrebareServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinalizeazaTestServlet() {
+    public AdaugaIntrebareServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,18 +41,24 @@ public class FinalizeazaTestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//doGet(request, response);
 		
+		
+		String path = "AdaugaIntrebare.jsp";
 		String numeTest = request.getParameter("numeTest").trim();
 		
-		TestServices.addIntrebariLaTest(IntreabreService.getListaIntrebari(), numeTest);
+		String numeAutor = TestServices.getNumeAutor(numeTest);
+		int numarIntrebari = TestServices.getNumarIntrebari(numeTest);
 		
-		String fileName="D:";
 		
+		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
 		
-		TestServices.salvezaTesteInXml(fileName);
+		request.setAttribute("numeAutor", numeAutor);
+		request.setAttribute("numarIntrebari", numarIntrebari);
+		request.setAttribute("numeTest", numeTest);
 		
-		String page="ProfPage.jsp";
-		response.sendRedirect(page);
+		reqDispacher.forward(request, response);
+		
 		
 	}
 

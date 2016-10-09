@@ -20,12 +20,12 @@ public class Intrebare {
 	}
 
 	public Intrebare(String textIntrebare, int nrRaspunsuriCorecte, int nrRaspunsuri,
-			ArrayList<Raspuns> listaRapunsuri) {
+			ArrayList<Raspuns> listaRaspunsuri) {
 		super();
 		this.textIntrebare = textIntrebare;
 		this.nrRaspunsuriCorecte = nrRaspunsuriCorecte;
 		this.nrRaspunsuri = nrRaspunsuri;
-		this.listaRapunsuri = listaRapunsuri;
+		this.listaRapunsuri = listaRaspunsuri;
 	}
 
 	public String getTextIntrebare() {

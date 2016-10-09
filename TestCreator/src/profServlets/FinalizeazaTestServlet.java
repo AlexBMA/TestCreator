@@ -43,7 +43,7 @@ public class FinalizeazaTestServlet extends HttpServlet {
 		
 		TestServices.addIntrebariLaTest(IntreabreService.getListaIntrebari(), numeTest);
 		
-		String fileName="C:\\Users\\Alexandru\\git\\TestCreator";
+		String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
 		
 		TestServices.salvezaTesteInXml(fileName);

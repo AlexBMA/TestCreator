@@ -124,7 +124,7 @@ public class XML {
 	{
 		Element intrebare = new Element("intrebare");
 		
-		Element idIntrebare = new Element("id_Intreabre");
+		Element idIntrebare = new Element("id_Intrebare");
 		idIntrebare.addContent(i.getIdIntrebare()+"");
 		
 		Element textIntrebare = new Element("text_Intrebare");
@@ -191,7 +191,16 @@ public class XML {
 			System.out.println("The root element: \t" + readDoc.getRootElement() + "\n");
 			
 			Element root = readDoc.getRootElement();
+
+			System.out.println("Nr total de teste \t" + root.getAttributeValue("nr_teste") + "\n");
 			
+			LinkedHashMap<String, Test> toateTestele = new LinkedHashMap<>();
+			
+			
+			for(Element currrentElem : root.getChildren())
+			{
+				
+			}
 			
 			
 		} catch (JDOMException e) {
@@ -204,5 +213,67 @@ public class XML {
 		
 		
 		return null;
+	}
+	
+	
+	public static void loadTestDinXML(Element currrentTest)
+	{
+		String numeTest = currrentTest.getChildText("nume_test");
+		String numeCreator = currrentTest.getChildText("autor_test");
+		int nrIntrebari = Integer.parseInt(currrentTest.getChildText("numar_intrebari"));
+		int idTest = Integer.parseInt(currrentTest.getChildText("nid_test"));
+		
+		Test testTemp = new Test(numeTest, numeCreator, nrIntrebari);
+		testTemp.setIdTest(idTest);
+		
+		Element listIntrebariElementXml=currrentTest.getChild("intrebari");
+		
+		ArrayList<Intrebare> listaIntrebari = new ArrayList<>();
+		Intrebare intrabreTemp;
+		
+		for(Element currrentIntrebare : listIntrebariElementXml.getChildren())
+		{
+			loadIntreabreDinXML(currrentIntrebare);
+		
+		}
+		
+		
+		
+		testTemp.setListaIntrebari(listaIntrebari);
+	}
+	
+	public static void loadIntreabreDinXML(Element currentIntreabre)
+	{
+		String textIntrebare=currentIntreabre.getChildText("text_Intrebare");
+		int nrRaspunsuriCorecte=Integer.parseInt(currentIntreabre.getChildText("nr_Raspunsuri_Corecte"));
+		int nrRaspunsuri=Integer.parseInt(currentIntreabre.getChildText("nr_Raspunsuri"));
+		int idIntrebare = Integer.parseInt(currentIntreabre.getChildText("id_Intrebare"));
+		
+		
+		ArrayList<Raspuns> listaRaspunsuri = new ArrayList<>();
+		Raspuns raspunsTemp;
+		
+		Element listaCuRaspunsuriXML = currentIntreabre.getChild("raspunsuri");
+		
+		for(Element raspuns : listaCuRaspunsuriXML.getChildren())
+		{
+			
+		}
+		
+		Intrebare intrebare = new Intrebare(textIntrebare, nrRaspunsuriCorecte, nrRaspunsuri, listaRaspunsuri);
+		intrebare.setIdIntrebare(idIntrebare);
+		
+	}
+	
+	public static Raspuns loadRaspunsDinXML(Element currentRaspuns)
+	{
+		String textRaspuns="";
+		int advFals=0;
+		int idRaspuns=0;
+		
+		Raspuns raspuns = new Raspuns(textRaspuns, advFals);
+		
+		return raspuns;
+		
 	}
 }

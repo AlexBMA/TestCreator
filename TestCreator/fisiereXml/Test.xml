@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toate_testele numar_teste="1">
+  <teste>
+    <test>
+      <id_test>0</id_test>
+      <nume_test>TestBeta</nume_test>
+      <autor_test>Alex</autor_test>
+      <numar_intrebari>2</numar_intrebari>
+      <intrebari>
+        <intrebare>
+          <id_Intrebare>0</id_Intrebare>
+          <text_Intrebare>In ce provincie a domnit Stefan cel Mare?</text_Intrebare>
+          <nr_Raspunsuri>2</nr_Raspunsuri>
+          <nr_Raspunsuri_Corecte>1</nr_Raspunsuri_Corecte>
+          <raspunsuri>
+            <raspuns>
+              <id_Raspuns>0</id_Raspuns>
+              <text_Raspuns>Moldova</text_Raspuns>
+              <tip_Raspuns>1</tip_Raspuns>
+            </raspuns>
+            <raspuns>
+              <id_Raspuns>0</id_Raspuns>
+              <text_Raspuns>Transilvania</text_Raspuns>
+              <tip_Raspuns>0</tip_Raspuns>
+            </raspuns>
+          </raspunsuri>
+        </intrebare>
+        <intrebare>
+          <id_Intrebare>0</id_Intrebare>
+          <text_Intrebare>Cand se serbeaza ziua nationala a Romaniei?</text_Intrebare>
+          <nr_Raspunsuri>2</nr_Raspunsuri>
+          <nr_Raspunsuri_Corecte>1</nr_Raspunsuri_Corecte>
+          <raspunsuri>
+            <raspuns>
+              <id_Raspuns>0</id_Raspuns>
+              <text_Raspuns>1 Decembrie</text_Raspuns>
+              <tip_Raspuns>1</tip_Raspuns>
+            </raspuns>
+            <raspuns>
+              <id_Raspuns>0</id_Raspuns>
+              <text_Raspuns>23 August</text_Raspuns>
+              <tip_Raspuns>0</tip_Raspuns>
+            </raspuns>
+          </raspunsuri>
+        </intrebare>
+      </intrebari>
+    </test>
+  </teste>
+</toate_testele>

@@ -8,11 +8,17 @@
 </head>
 <body>
 	
-	<div>
+	<div id="container">
+		<header></header>
+		<br/>
+		<main>
+			<h2>Nume Test: </h2>
+			<h2>Autor Test: </h2>
+			<h2>Numar intrebari: </h2>
+		</main>
+		<br/>
+		<footer></footer>
 		
-		<h2>Nume Test: </h2>
-		<h2>Autor Test: </h2>
-		<h2>Numar intrebari: </h2>
 		
 		
 	

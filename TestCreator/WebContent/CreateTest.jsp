@@ -7,9 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<div>
-		<h2>Create Test</h2>
+
+	<div id="container">
+		
+		<header>
+		</header>
+		<br/>
+		<main>
+		
+		<h2>Creeaza test</h2>
 		
 		<form action="CreateTestServlet" method="post" >
 			
@@ -21,6 +27,17 @@
 			<button type="submit">Create Test </button>
 			<button type="reset">Reset</button>
 		</form>
+		
+	
+			
+		</form>
+		</main>
+		<br/>
+		<footer>
+		</footer>
+		
+	
+	
 		
 	
 	</div>

@@ -7,10 +7,31 @@
 <title>Main profesor page</title>
 </head>
 <body>
+	<div id="container">
+		
+		<header>
+		</header>
+		<br/>
+		<main>
+		
+		<a href="CreateTest.jsp"><button>Creaza test nou</button></a>
 	
-	<a href="CreateTest.jsp"><button>Creaza test nou</button></a>
+		<form action="VizualizeazaTeste" method="get">
 	
-	<a href="VizualizareTeste.jsp"><button>Vizualizare teste</button></a>
+			<button type="submit">Vizualizare teste</button>
+		</form>
+	
+			
+		</form>
+		</main>
+		<br/>
+		<footer>
+		</footer>
+		
+	
+	</div>
+	
+	
 	
 	
 	

@@ -7,18 +7,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+	<div id="container">
 		
-		
-		<form action="" method="post">
+		<header></header>
+		<br/>
+		<main>
+			<form action="LoginServlet" method="post">
 		
 			<input type="text" placeholder="nume utilizator" name="user">
 			<input type="password" placeholder="parola" name="pass">
+			
 			<br/>
 			<button type="submit">Logare</button>
-			<button type="reset">Resetare Camp</button>
+			<button type="reset">Resetare camp</button>
 			
 		</form>
+		</main>
+		<br/>
+		<footer>
+		</footer>
+		
 	
 	</div>
 </body>

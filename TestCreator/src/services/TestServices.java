@@ -13,7 +13,7 @@ import org.jdom2.input.SAXBuilder;
 
 import model.Intrebare;
 import model.Test;
-import xmlpack.XML;
+import xmlpack.XMLXervices;
 
 public class TestServices {
 
@@ -23,7 +23,7 @@ public class TestServices {
 
 		Test t = new Test(numeTest, numeCreator, nrIntrebari);
 		if (toateTestele == null)
-			toateTestele = getToateTestele();
+			toateTestele = new LinkedHashMap<>();
 
 		toateTestele.put(numeTest, t);
 	}
@@ -34,7 +34,7 @@ public class TestServices {
 	}
 
 	public static LinkedHashMap<String, Test> getToateTestele() {
-		return new LinkedHashMap<>();
+		return  toateTestele;
 	}
 
 	private static Test getTestCurent(String numeTest) {
@@ -68,13 +68,13 @@ public class TestServices {
 		if (toateTestele == null)
 			System.out.println(" toate teste null");
 		else
-			XML.saveXMLToateTestele(xmlFile, toateTestele);
+			XMLXervices.saveXMLToateTestele(xmlFile, toateTestele);
 
 	}
 
 	public static void incarcaTestDinXml(String filePath) {
 		
-		toateTestele = XML.incarcaToateTesteleDinXml(filePath);
+		toateTestele = XMLXervices.incarcaToateTesteleDinXml(filePath);
 
 	}
 
@@ -88,7 +88,7 @@ public class TestServices {
 			System.out.println(t.getIdTest() + "  $$$$");
 			System.out.println(t.getNumeCreator());
 
-			t.getListaIntrebari();
+			
 		}
 
 	}

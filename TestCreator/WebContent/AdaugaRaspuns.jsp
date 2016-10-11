@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+	<div id="container">
+		<header></header>
+		<br/>
+		<main>
 		
+			
 		<h3> Nume test: <%=request.getAttribute("numeTest") %></h3>
 		<h4> Nume autor:  <%=request.getAttribute("autorTest") %></h4>
 		<h4> Numar intrebari al testului: <%=request.getAttribute("numarIntrebari") %></h4>
@@ -67,6 +71,12 @@
 			<button  type="submit">Adauga raspunsurile </button>
 			<button  type="reset">Reseteaza campurile</button>
 		</form>
+		
+		</main>
+		<br/>
+		<footer>
+		</footer>
+		
 		
 		
 	

@@ -8,7 +8,11 @@
 </head>
 <body>
 
-	<div>
+	<div id="container">
+	<header></header>
+	<br/>
+	<main>
+	
 		<h3>
 			Nume test:
 			<%=request.getAttribute("numeTest")%></h3>
@@ -52,7 +56,10 @@
 		</form>
 		
 		<br/>		
-
+	</main>
+	<br/>
+	<footer>
+	</footer>
 	</div>
 
 

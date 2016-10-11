@@ -8,8 +8,11 @@
 </head>
 <body>
 
-	<div>
-		<h2> Test creat </h2>
+	<div id="container">
+		<header></header>
+		<br/>
+		<main>
+			<h2> Test creat </h2>
 		<h3> Nume test: <%=request.getAttribute("numeTest") %></h3>
 		<h4> Nume autor:  <%=request.getAttribute("autorTest") %></h4>
 		<h4> Numar intrebari al testului: <%=request.getAttribute("numarIntrebari") %></h4>
@@ -30,6 +33,11 @@
 			<button>Adauga intrebare</button>
 			
 		</form>
+		
+		</main>
+		<br/>
+		<footer></footer>
+		
 		
 		
 	

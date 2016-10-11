@@ -1,0 +1,33 @@
+/*  Reset */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* General Styling */
+
+body {
+    color: white;
+    background: #90C3D4;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+/* Custom CSS*/
+
+#container{
+    margin: 10px auto 10px;
+    width: 70%;
+    background: yellow;
+    border-radius: 15px;
+    color : black;
+}

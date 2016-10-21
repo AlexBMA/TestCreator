@@ -26,6 +26,8 @@
 			<button type="submit">Logare</button>
 			<button type="reset">Resetare camp</button>
 			
+			
+			
 		</form>
 		</main>
 		<br/>

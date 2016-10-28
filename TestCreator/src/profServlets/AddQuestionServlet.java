@@ -1,26 +1,31 @@
 package profServlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.IntreabreService;
-import services.TestServices;
+import org.jdom2.test.cases.TestSerialization;
+
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
+import dao.TestDao;
 
 /**
- * Servlet implementation class FinalizeazaTest
+ * Servlet implementation class AdaugaIntrebareServlet
  */
-@WebServlet("/FinalizeazaTest")
-public class FinalizeazaTestServlet extends HttpServlet {
+@WebServlet("/AdaugaIntrebareServlet")
+public class AddQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinalizeazaTestServlet() {
+    public AddQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,18 +43,28 @@ public class FinalizeazaTestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//doGet(request, response);
 		
-		String numeTest = request.getParameter("numeTest").trim();
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		TestServices.addIntrebariLaTest(IntreabreService.getListaIntrebari(), numeTest);
+		final String  NEXT_PAGE_NAME ="AddQuestion";
 		
-		String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
+		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
+		
+		String testName = request.getParameter("numeTest").trim();
+		
+		String CreatorName = TestDao.getCreatorName(testName);
+		int numberOfQuestions = TestDao.getNumarIntrebari(testName);
 		
 		
-		TestServices.salvezaTesteInXml(fileName);
+		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
 		
-		String page="ProfPage.jsp";
-		response.sendRedirect(page);
+		request.setAttribute("numeAutor", CreatorName);
+		request.setAttribute("numarIntrebari", numberOfQuestions);
+		request.setAttribute("numeTest", testName);
+		
+		reqDispacher.forward(request, response);
+		
 		
 	}
 

@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.jdom2.Document;
@@ -14,28 +16,28 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import model.Intrebare;
-import model.Raspuns;
+import model.Question;
+import model.Answer;
 import model.Test;
 
 public class XMLXervices {
 
-	public static void saveXMLToateTestele(File xmlFile, LinkedHashMap<String, Test> toateTestele) {
+	public static void saveAllTestsInXML(File xmlFile, Map<String, Test> allTests) {
 		Document doc = new Document();
 		Element theRoot = new Element("toate_testele");
 
 		doc.setRootElement(theRoot);
 
-		int size = toateTestele.size();
+		int size = allTests.size();
 		theRoot.setAttribute("numar_teste", Integer.toString(size));
 
 		Element teste = new Element("teste");
 
-		Set<String> Keys = toateTestele.keySet();
+		Set<String> Keys = allTests.keySet();
 
 		for (String i : Keys) {
 
-			Test testTemp = toateTestele.get(i);
+			Test testTemp = allTests.get(i);
 			Element t = saveXMLHelperTest(testTemp);
 			teste.addContent(t);
 		}
@@ -53,7 +55,7 @@ public class XMLXervices {
 
 	}
 
-	public static void saveXMLTest(File xmlFile, Test test) {
+	public static void saveestInXML(File xmlFile, Test test) {
 		Document doc = new Document();
 		Element theRoot = new Element("test_simplu");
 		doc.setRootElement(theRoot);
@@ -76,23 +78,23 @@ public class XMLXervices {
 		Element test = new Element("test");
 
 		Element idTest = new Element("id_test");
-		idTest.addContent(t.getIdTest() + "");
+		idTest.addContent(t.getId() + "");
 
 		Element numeTest = new Element("nume_test");
-		numeTest.addContent(t.getNumeTest());
+		numeTest.addContent(t.getTestName());
 
 		Element autorTest = new Element("autor_test");
-		autorTest.addContent(t.getNumeCreator());
+		autorTest.addContent(t.getCreatorName());
 
 		Element nrIntrebari = new Element("numar_intrebari");
-		nrIntrebari.addContent(t.getNrIntrebari() + "");
+		nrIntrebari.addContent(t.getNumberOfQuestions() + "");
 
 		Element intrebari = new Element("intrebari");
 
-		ArrayList<Intrebare> listaIntrebare = t.getListaIntrebari();
-		int size = listaIntrebare.size();
+		List<Question> questionList = t.getListQuestions();
+		int size = questionList.size();
 		for (int j = 0; j < size; j++) {
-			Intrebare i = listaIntrebare.get(j);
+			Question i = questionList.get(j);
 			intrebari.addContent(saveXMLHelperIntrebari(i));
 		}
 
@@ -102,66 +104,66 @@ public class XMLXervices {
 		test.addContent(nrIntrebari);
 		test.addContent(intrebari);
 
-		System.out.println("S-a adaugat testul \t");
-
+		System.out.println("Test was added \t");
+		
 		return test;
 
 	}
 
-	public static Element saveXMLHelperIntrebari(Intrebare i) {
-		Element intrebare = new Element("intrebare");
+	public static Element saveXMLHelperIntrebari(Question theQuestion) {
+		Element question = new Element("intrebare");
 
-		Element idIntrebare = new Element("id_Intrebare");
-		idIntrebare.addContent(i.getIdIntrebare() + "");
+		Element questionId = new Element("id_Intrebare");
+		questionId.addContent(theQuestion.getId() + "");
 
-		Element textIntrebare = new Element("text_Intrebare");
-		textIntrebare.addContent(i.getTextIntrebare());
+		Element questionText = new Element("text_Intrebare");
+		questionText.addContent(theQuestion.getQuestionText());
 
-		Element nrRaspunsuriCorecte = new Element("nr_Raspunsuri_Corecte");
-		nrRaspunsuriCorecte.addContent(i.getNrRaspunsuriCorecte() + "");
+		Element numberOfCorrectAnswers = new Element("nr_Raspunsuri_Corecte");
+		numberOfCorrectAnswers.addContent(theQuestion.getNumberOfCorrectAnswers() + "");
 
-		Element nrRaspunsuri = new Element("nr_Raspunsuri");
-		nrRaspunsuri.addContent(i.getNrRaspunsuri() + "");
+		Element numberOfAnswers = new Element("nr_Raspunsuri");
+		numberOfAnswers.addContent(theQuestion.getNumberOfAnswers() + "");
 
-		Element raspunsuri = new Element("raspunsuri");
+		Element answer = new Element("raspunsuri");
 
-		ArrayList<Raspuns> listaRaspunsuri = i.getListaRapunsuri();
+		List<Answer> listaRaspunsuri = theQuestion.getListAnswersi();
 		int size = listaRaspunsuri.size();
 
 		for (int j = 0; j < size; j++) {
-			Raspuns r = listaRaspunsuri.get(j);
-			raspunsuri.addContent(saveXMLHelperRaspunsuri(r));
+			Answer r = listaRaspunsuri.get(j);
+			answer.addContent(saveXMLHelperRaspunsuri(r));
 		}
 
-		intrebare.addContent(idIntrebare);
-		intrebare.addContent(textIntrebare);
-		intrebare.addContent(nrRaspunsuri);
-		intrebare.addContent(nrRaspunsuriCorecte);
-		intrebare.addContent(raspunsuri);
+		question.addContent(questionId);
+		question.addContent(questionText);
+		question.addContent(numberOfAnswers);
+		question.addContent(numberOfCorrectAnswers);
+		question.addContent(answer);
 
-		return intrebare;
+		return question;
 	}
 
-	public static Element saveXMLHelperRaspunsuri(Raspuns r) {
-		Element raspuns = new Element("raspuns");
+	public static Element saveXMLHelperRaspunsuri(Answer theAnswer) {
+		Element answer = new Element("raspuns");
 
-		Element idRaspuns = new Element("id_Raspuns");
-		idRaspuns.addContent(r.getIdRaspuns() + "");
+		Element idAnswer = new Element("id_Raspuns");
+		idAnswer.addContent(theAnswer.getId() + "");
 
-		Element textRaspuns = new Element("text_Raspuns");
-		textRaspuns.addContent(r.getTextRaspuns());
+		Element answerText = new Element("text_Raspuns");
+		answerText.addContent(theAnswer.getAnswerText());
 
-		Element tipRaspuns = new Element("tip_Raspuns");
-		tipRaspuns.addContent(r.getAdvFals() + "");
+		Element typeAnswer = new Element("tip_Raspuns");
+		typeAnswer.addContent(theAnswer.getTrueFalse() + "");
 
-		raspuns.addContent(idRaspuns);
-		raspuns.addContent(textRaspuns);
-		raspuns.addContent(tipRaspuns);
+		answer.addContent(idAnswer);
+		answer.addContent(answerText);
+		answer.addContent(typeAnswer);
 
-		return raspuns;
+		return answer;
 	}
 
-	public static LinkedHashMap<String, Test> incarcaToateTesteleDinXml(String filePath) {
+	public static Map<String, Test> loadAllTestFromXML(String filePath) {
 		File fisier = new File(filePath);
 
 		SAXBuilder builder = new SAXBuilder();
@@ -176,16 +178,16 @@ public class XMLXervices {
 
 			System.out.println("Nr total de teste \t" + root.getAttributeValue("numar_teste") + "\n");
 
-			LinkedHashMap<String, Test> toateTestele = new LinkedHashMap<>();
+			Map<String, Test> allTests = new LinkedHashMap<>();
 
 			Test testTemp;
 			Element toateTesteElementXml = root.getChild("teste");
 			for (Element currrentElem : toateTesteElementXml.getChildren()) {
-				testTemp = loadTestDinXML(currrentElem);
-				toateTestele.put(testTemp.getNumeTest(), testTemp);
+				testTemp = loadTestFromXML(currrentElem);
+				allTests.put(testTemp.getTestName(), testTemp);
 			}
 
-			return toateTestele;
+			return allTests;
 
 		} catch (JDOMException e) {
 			// TODO Auto-generated catch block
@@ -198,62 +200,62 @@ public class XMLXervices {
 		return null;
 	}
 
-	public static Test loadTestDinXML(Element currrentTest) {
+	public static Test loadTestFromXML(Element currrentTest) {
 		
-		String numeTest = currrentTest.getChildText("nume_test");
-		String numeCreator = currrentTest.getChildText("autor_test");
-		int nrIntrebari = Integer.parseInt(currrentTest.getChildText("numar_intrebari"));
+		String nameTest = currrentTest.getChildText("nume_test");
+		String nameCreator = currrentTest.getChildText("autor_test");
+		int numberOfQuestions = Integer.parseInt(currrentTest.getChildText("numar_intrebari"));
 		int idTest = Integer.parseInt(currrentTest.getChildText("id_test"));
 
-		Element listIntrebariElementXml = currrentTest.getChild("intrebari");
+		Element listQuestionXMLElement = currrentTest.getChild("intrebari");
 
-		ArrayList<Intrebare> listaIntrebari = new ArrayList<>();
-		Intrebare intrabareTemp;
+		List<Question> questionList = new ArrayList<>();
+		Question tempQuestion;
 
-		for (Element currrentIntrebare : listIntrebariElementXml.getChildren()) {
-			intrabareTemp = loadIntreabreDinXML(currrentIntrebare);
-			listaIntrebari.add(intrabareTemp);
+		for (Element currentQuestion : listQuestionXMLElement.getChildren()) {
+			tempQuestion = loadIQuestionFromXML(currentQuestion);
+			questionList.add(tempQuestion);
 
 		}
-		Test testTemp = new Test(numeTest, numeCreator, nrIntrebari);
-		testTemp.setIdTest(idTest);
-		testTemp.setListaIntrebari(listaIntrebari);
+		Test testTemp = new Test(nameTest, nameCreator, numberOfQuestions);
+		testTemp.setId(idTest);
+		testTemp.setListQuestions(questionList);
 
 		return testTemp;
 	}
 
-	public static Intrebare loadIntreabreDinXML(Element currentIntreabre) {
-		String textIntrebare = currentIntreabre.getChildText("text_Intrebare");
-		int nrRaspunsuriCorecte = Integer.parseInt(currentIntreabre.getChildText("nr_Raspunsuri_Corecte"));
-		int nrRaspunsuri = Integer.parseInt(currentIntreabre.getChildText("nr_Raspunsuri"));
-		int idIntrebare = Integer.parseInt(currentIntreabre.getChildText("id_Intrebare"));
+	public static Question loadIQuestionFromXML(Element currentQuestion) {
+		String textQestion = currentQuestion.getChildText("text_Intrebare");
+		int numberOfCorrectAnswers = Integer.parseInt(currentQuestion.getChildText("nr_Raspunsuri_Corecte"));
+		int numberOfAnswers = Integer.parseInt(currentQuestion.getChildText("nr_Raspunsuri"));
+		int idQuestion = Integer.parseInt(currentQuestion.getChildText("id_Intrebare"));
 
-		ArrayList<Raspuns> listaRaspunsuri = new ArrayList<>();
-		Raspuns raspunsTemp;
+		List<Answer> listAnswers = new ArrayList<>();
+		Answer tempAnswer;
 
-		Element listaCuRaspunsuriXML = currentIntreabre.getChild("raspunsuri");
+		Element listAnswerXMLElement = currentQuestion.getChild("raspunsuri");
 
-		for (Element raspuns : listaCuRaspunsuriXML.getChildren()) {
-			raspunsTemp = loadRaspunsDinXML(raspuns);
-			listaRaspunsuri.add(raspunsTemp);
+		for (Element answer : listAnswerXMLElement.getChildren()) {
+			tempAnswer = loadAnswerFromXML(answer);
+			listAnswers.add(tempAnswer);
 		}
 
-		Intrebare intrebare = new Intrebare(textIntrebare, nrRaspunsuriCorecte, nrRaspunsuri, listaRaspunsuri);
-		intrebare.setIdIntrebare(idIntrebare);
+		Question question = new Question(textQestion, numberOfCorrectAnswers, numberOfAnswers, listAnswers);
+		question.setId(idQuestion);
 
-		return intrebare;
+		return question;
 
 	}
 
-	public static Raspuns loadRaspunsDinXML(Element currentRaspuns) {
-		String textRaspuns = currentRaspuns.getChildText("text_Intrebare");
-		int advFals = Integer.parseInt(currentRaspuns.getChildText("tip_Raspuns"));
-		int idRaspuns = Integer.parseInt(currentRaspuns.getChildText("id_Raspuns"));
+	public static Answer loadAnswerFromXML(Element currentAnswer) {
+		String testAnswer = currentAnswer.getChildText("text_Intrebare");
+		int trueFals = Integer.parseInt(currentAnswer.getChildText("tip_Raspuns"));
+		int idAnswer = Integer.parseInt(currentAnswer.getChildText("id_Raspuns"));
 
-		Raspuns raspuns = new Raspuns(textRaspuns, advFals);
-		raspuns.setIdRaspuns(idRaspuns);
+		Answer answer = new Answer(testAnswer, trueFals);
+		answer.setId(idAnswer);;
 
-		return raspuns;
+		return answer;
 
 	}
 }

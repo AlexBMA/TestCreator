@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.TestServices;
+import dao.TestDao;
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
 import xmlpack.XMLXervices;
 
 /**
  * Servlet implementation class VizualizeazaTeste
  */
 @WebServlet("/VizualizeazaTeste")
-public class VizualizeazaTeste extends HttpServlet {
+public class ShowTests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VizualizeazaTeste() {
+    public ShowTests() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +37,17 @@ public class VizualizeazaTeste extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String filePath="D:\\git\\TestCreator\\TestCreator\\fisiereXml\\Test.xml";
-		TestServices.incarcaTestDinXml(filePath);
+		TestDao.loadAllTestFromXml(filePath);
 		
-		String page="VizualizareTeste.jsp";
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
+		
+		final String  NEXT_PAGE_NAME ="ShowTests";
+		
+		String page= pathCreator.createPath("ShowTests");
+				//"VizualizareTeste.jsp";
 		
 		
-		request.setAttribute("toateTestele", TestServices.getToateTestele());
+		request.setAttribute("toateTestele", TestDao.getToateTestele());
 		
 		RequestDispatcher requestDispacher = request.getRequestDispatcher(page);
 		requestDispacher.forward(request, response);

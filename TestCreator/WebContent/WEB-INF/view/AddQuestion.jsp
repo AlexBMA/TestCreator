@@ -10,9 +10,10 @@
 <body>
 
 	<div id="container">
-	<header></header>
+	<header id="header">
+	</header>
 	<br/>
-	<main>
+	<main id="main">
 	
 		<h3>
 			Nume test:
@@ -59,7 +60,7 @@
 		<br/>		
 	</main>
 	<br/>
-	<footer>
+	<footer id="footer">
 	</footer>
 	</div>
 

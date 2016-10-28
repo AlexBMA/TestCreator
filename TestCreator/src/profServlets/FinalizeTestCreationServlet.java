@@ -1,29 +1,29 @@
 package profServlets;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jdom2.test.cases.TestSerialization;
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
+import dao.QuestionDao;
+import dao.TestDao;
 
-import services.TestServices;
 
 /**
- * Servlet implementation class AdaugaIntrebareServlet
+ * Servlet implementation class FinalizeazaTest
  */
-@WebServlet("/AdaugaIntrebareServlet")
-public class AdaugaIntrebareServlet extends HttpServlet {
+@WebServlet("/FinalizeazaTest")
+public class FinalizeTestCreationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdaugaIntrebareServlet() {
+    public FinalizeTestCreationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,24 +41,23 @@ public class AdaugaIntrebareServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
+		String testName = request.getParameter("numeTest").trim();
+		
+		TestDao.addQuestonsToTest(QuestionDao.getListaIntrebari(), testName);
+		
+		String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
 		
-		String path = "AdaugaIntrebare.jsp";
-		String numeTest = request.getParameter("numeTest").trim();
+		TestDao.saveInXMLFile(fileName);
 		
-		String numeAutor = TestServices.getNumeAutor(numeTest);
-		int numarIntrebari = TestServices.getNumarIntrebari(numeTest);
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
+		final String  NEXT_PAGE_NAME ="ProfPage";
 		
-		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
+		String page=pathCreator.createPath(NEXT_PAGE_NAME);
 		
-		request.setAttribute("numeAutor", numeAutor);
-		request.setAttribute("numarIntrebari", numarIntrebari);
-		request.setAttribute("numeTest", numeTest);
-		
-		reqDispacher.forward(request, response);
-		
+		response.sendRedirect(page);
 		
 	}
 

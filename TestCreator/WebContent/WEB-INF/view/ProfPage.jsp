@@ -10,10 +10,10 @@
 <body>
 	<div id="container">
 		
-		<header>
+		<header id="header">
 		</header>
 		<br/>
-		<main>
+		<main id="main">
 		
 		<a href="CreateTest.jsp"><button>Creaza test nou</button></a>
 	
@@ -23,10 +23,10 @@
 		</form>
 	
 			
-		</form>
+		
 		</main>
 		<br/>
-		<footer>
+		<footer id="footer">
 		</footer>
 		
 	

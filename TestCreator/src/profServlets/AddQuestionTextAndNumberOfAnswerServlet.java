@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
+
 /**
  * Servlet implementation class AdaugaTextIntrebareSiNrRaspunsi
  */
 @WebServlet("/AdaugaTextIntrebareSiNrRaspunsi")
-public class AdaugaTextIntrebareSiNrRaspunsiServlet extends HttpServlet {
+public class AddQuestionTextAndNumberOfAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdaugaTextIntrebareSiNrRaspunsiServlet() {
+    public AddQuestionTextAndNumberOfAnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,31 +43,36 @@ public class AdaugaTextIntrebareSiNrRaspunsiServlet extends HttpServlet {
 		//doGet(request, response);
 		
 
-		String numeTest= request.getParameter("numeTest").trim();
-		String autorTest = request.getParameter("numeAutor").trim();
-		int nrIntrebari =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
+		String testName= request.getParameter("numeTest").trim();
+		String testCreator = request.getParameter("numeAutor").trim();
+		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
 		
 			
-		String textIntrebare = request.getParameter("textIntrebare").trim();
+		String questionText = request.getParameter("textIntrebare").trim();
 		
-		int numarVariante = Integer.parseInt(request.getParameter("numarVariante").trim());
-		int numarVarianteCorecte = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
+		int numberOfAnswers = Integer.parseInt(request.getParameter("numarVariante").trim());
+		int numberOfCorrectAnswers = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
 		
 		
-		System.out.println(textIntrebare);
-		System.out.println(numarVariante);
-		System.out.println(numarVarianteCorecte);
+		System.out.println(questionText);
+		System.out.println(numberOfAnswers);
+		System.out.println(numberOfCorrectAnswers);
 		
-		String path="AdaugaRaspuns.jsp";
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
+		
+		final String  NEXT_PAGE_NAME = "AddAnswer";
+		
+		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
+		
 		
 		RequestDispatcher requestDispacher = request.getRequestDispatcher(path);
-		request.setAttribute("textIntrebare", textIntrebare);
-		request.setAttribute("numarVariante", numarVariante);
-		request.setAttribute("numarVarianteCorecte", numarVarianteCorecte);
+		request.setAttribute("textIntrebare", questionText);
+		request.setAttribute("numarVariante", numberOfAnswers);
+		request.setAttribute("numarVarianteCorecte", numberOfCorrectAnswers);
 		
-		request.setAttribute("numeTest" , numeTest);
-		request.setAttribute("autorTest", autorTest);
-		request.setAttribute("numarIntrebari", nrIntrebari);
+		request.setAttribute("numeTest" , testName);
+		request.setAttribute("autorTest", testCreator);
+		request.setAttribute("numarIntrebari", numberOfQuestions);
 		
 		requestDispacher.forward(request, response);
 		

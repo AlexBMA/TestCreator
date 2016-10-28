@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.IntreabreService;
-import services.RaspunsService;
+import dao.AnswerDao;
+import dao.QuestionDao;
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
 
 /**
  * Servlet implementation class AdaugaVarianteDeRaspuns
  */
 @WebServlet("/AdaugaVarianteDeRaspuns")
-public class AdaugaVarianteDeRaspunsServlet extends HttpServlet {
+public class AddAnswerChoicesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdaugaVarianteDeRaspunsServlet() {
+    public AddAnswerChoicesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,49 +43,54 @@ public class AdaugaVarianteDeRaspunsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		String numeTest= request.getParameter("numeTest").trim();
-		String autorTest = request.getParameter("numeAutor").trim();
-		int nrIntrebari =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
+		String testName= request.getParameter("numeTest").trim();
+		String testCreator = request.getParameter("numeAutor").trim();
+		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
 		
 		
-		int nrVarianteCorecte = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
-		int nrVarianteGresite = Integer.parseInt(request.getParameter("numarVarianteIncorecte").trim());
-		String textIntrebare = request.getParameter("textIntreabare").trim();
+		int numberOfCorrectAnswers = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
+		int numberOfIncorrectAnswers = Integer.parseInt(request.getParameter("numarVarianteIncorecte").trim());
+		String textQuestion = request.getParameter("textIntreabare").trim();
 		
 		//System.out.println("Text intreabre:"+textIntrebare);
 		
-		RaspunsService.createListaRaspunsuri();
+		AnswerDao.createListaRaspunsuri();
 		
-		for(int i=0;i<nrVarianteCorecte;i++)
+		for(int i=0;i<numberOfCorrectAnswers;i++)
 		{
-			String variantaCorecta = request.getParameter("textRaspunsC"+i).trim();
+			String correctAnswer = request.getParameter("textRaspunsC"+i).trim();
 		//	System.out.println(variantaCorecta);
 			
-			RaspunsService.createRaspuns(variantaCorecta, 1);
+			AnswerDao.createRaspuns(correctAnswer, 1);
 			
 		}
 		
-		for(int i=0;i<nrVarianteGresite;i++)
+		for(int i=0;i<numberOfIncorrectAnswers;i++)
 		{
-			String variantaGresita = request.getParameter("textRaspunsI"+i).trim();
+			String incorrectAnswer = request.getParameter("textRaspunsI"+i).trim();
 		//	System.out.println(variantaGresita);
 			
-			RaspunsService.createRaspuns(variantaGresita, 0);
+			AnswerDao.createRaspuns(incorrectAnswer, 0);
 		}
 		
 	
-		IntreabreService.createIntrebare(textIntrebare, nrVarianteCorecte, nrVarianteCorecte+nrVarianteGresite, RaspunsService.getListaRaspunsuri());
+		QuestionDao.createIntrebare(textQuestion, numberOfCorrectAnswers, numberOfCorrectAnswers+numberOfIncorrectAnswers, AnswerDao.getListaRaspunsuri());
 		
 		
 		String msg= "Intrebare creata cu succes";
 		System.out.println(msg);
 		
 		
-		String path="AdaugaIntrebare.jsp";
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		request.setAttribute("numeTest" , numeTest);
-		request.setAttribute("numeAutor", autorTest);
-		request.setAttribute("numarIntrebari", nrIntrebari);
+		final String  NEXT_PAGE_NAME = "AddQuestion";
+		
+		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
+		
+		
+		request.setAttribute("numeTest" , testName);
+		request.setAttribute("numeAutor", testCreator);
+		request.setAttribute("numarIntrebari", numberOfQuestions);
 		
 		RequestDispatcher  requestDispacher = request.getRequestDispatcher(path);
 		requestDispacher.forward(request, response);

@@ -1,11 +1,13 @@
-package services;
+package dao;
 
 import java.util.ArrayList;
-import model.Raspuns;
+import java.util.List;
 
-public class RaspunsService {
+import model.Answer;
 
-	private static ArrayList<Raspuns> listaRaspunsuri;
+public class AnswerDao {
+
+	private static List<Answer> listaRaspunsuri;
 	
 	public static void createListaRaspunsuri()
 	{
@@ -15,12 +17,12 @@ public class RaspunsService {
 	public static void createRaspuns(String textRaspuns,int advFals)
 	{
 		if(listaRaspunsuri == null) createListaRaspunsuri();
-		Raspuns r = new Raspuns(textRaspuns, advFals);
+		Answer r = new Answer(textRaspuns, advFals);
 		
 		listaRaspunsuri.add(r);
 	}
 	
-	public static ArrayList<Raspuns> getListaRaspunsuri()
+	public static List<Answer> getListaRaspunsuri()
 	{
 		return listaRaspunsuri;
 	}

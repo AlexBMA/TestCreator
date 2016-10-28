@@ -12,7 +12,7 @@
 <body>
 	<div id="container">
 		
-		<header>
+		<header id="header">
 			
 			<nav>
 				<ul>
@@ -28,7 +28,7 @@
 		</header>
 		
 		<br/>
-		<main>
+		<main id="main">
 		<h2>Toate testele care au fost create</h2>
 		
 		<table>
@@ -75,7 +75,7 @@
 		</table>
 		</main>
 		<br/>
-		<footer>
+		<footer id="footer">
 		</footer>
 		
 	

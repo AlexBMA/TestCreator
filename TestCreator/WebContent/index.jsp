@@ -11,12 +11,12 @@
 <body>
 	<div id="container">
 		
-		<header>
+		<header id="header">
 			<a href=""><button>Acasa</button></a>
 			<a href=""><button>Despre</button></a>
 		</header>
 		<br/>
-		<main>
+		<main id="main">
 			<form action="LoginServlet" method="post">
 		
 			<input type="text" placeholder="nume utilizator" name="user">
@@ -31,7 +31,7 @@
 		</form>
 		</main>
 		<br/>
-		<footer>
+		<footer id="footer">
 		</footer>
 		
 	

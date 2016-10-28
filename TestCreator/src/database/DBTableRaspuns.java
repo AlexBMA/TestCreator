@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.Raspuns;
+import model.Answer;
 
 public class DBTableRaspuns {
 	
-	public void insertRaspuns(Connection conn,Raspuns rasp)
+	public void insertRaspuns(Connection conn,Answer rasp)
 	{
 		
 		try {
@@ -24,7 +24,7 @@ public class DBTableRaspuns {
 		}
 	}
 	
-	public void updateRaspuns(Connection conn,Raspuns rasp)
+	public void updateRaspuns(Connection conn,Answer rasp)
 	{
 		
 	}

@@ -11,10 +11,10 @@
 
 	<div id="container">
 		
-		<header>
+		<header id="header">
 		</header>
 		<br/>
-		<main>
+		<main id="main">
 		
 		<h2>Creeaza test</h2>
 		
@@ -31,10 +31,10 @@
 		
 	
 			
-		</form>
+		
 		</main>
 		<br/>
-		<footer>
+		<footer id="footer">
 		</footer>
 		
 	

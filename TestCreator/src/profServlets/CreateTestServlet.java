@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.IntreabreService;
-import services.TestServices;
+import dao.QuestionDao;
+import dao.TestDao;
+import dao.PathCreatorPrefixAndSufix;
+import dao.PathCreatorPrefixAndSufixImpl;
 
 /**
  * Servlet implementation class CreateTestServlet
@@ -43,25 +45,29 @@ public class CreateTestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String numeTest= request.getParameter("numetest").trim();
-		String autorTest = request.getParameter("numneautor").trim();
-		int nrIntrebari =  Integer.parseInt(request.getParameter("numarintrebari").trim());
+		String testName= request.getParameter("numetest").trim();
+		String testCreator = request.getParameter("numneautor").trim();
+		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarintrebari").trim());
 		
 	//	System.out.println(numeTest);
 	//	System.out.println(autorTest);
 	//	System.out.println(nrIntrebari);
 		
-		TestServices.createTest(numeTest, autorTest, nrIntrebari);
+		TestDao.createTest(testName, testCreator, numberOfQuestions);
 		
-		IntreabreService.createListaIntrebari();
+		QuestionDao.createListaIntrebari();
 		
+		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		String  path="TestCreated.jsp";	
+		final String  NEXT_PAGE_NAME ="TestCreated";
+		
+		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
+		
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
 		
-		request.setAttribute("numeTest" , numeTest);
-		request.setAttribute("autorTest", autorTest);
-		request.setAttribute("numarIntrebari", nrIntrebari);
+		request.setAttribute("numeTest" , testName);
+		request.setAttribute("autorTest", testCreator);
+		request.setAttribute("numarIntrebari", numberOfQuestions);
 		
 		reqDispacher.forward(request, response);
 		

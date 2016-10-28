@@ -10,9 +10,10 @@
 <body>
 
 	<div id="container">
-		<header></header>
+		<header id="header">
+		</header>
 		<br/>
-		<main>
+		<main id="main">
 			<h2> Test creat </h2>
 		<h3> Nume test: <%=request.getAttribute("numeTest") %></h3>
 		<h4> Nume autor:  <%=request.getAttribute("autorTest") %></h4>
@@ -37,7 +38,8 @@
 		
 		</main>
 		<br/>
-		<footer></footer>
+		<footer id="footer">
+		</footer>
 		
 		
 		

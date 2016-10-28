@@ -1,62 +1,61 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Test {
+public class Test extends TopEntity{
 
-	private int idTest;
-	private String numeTest;
-	private String numeCreator;
-	private int nrIntrebari;
-	private ArrayList<Intrebare> listaIntrebari;
-
-	public Test(String numeTest, String numeCreator, int nrIntrebari) {
-		this.numeTest = numeTest;
-		this.numeCreator = numeCreator;
-		this.nrIntrebari = nrIntrebari;
-		this.idTest=0;
-		listaIntrebari = new ArrayList<>();
+	
+	private String testName;
+	private String creatorName;
+	private int numberOfQuestions;
+	private List<Question> listQuestions;
+	
+	public Test()
+	{
+		
+	}
+	public Test(String testName, String creatorName, int numberOfQuestions)
+	{
+		this.testName = testName;
+		this.creatorName = creatorName;
+		this.numberOfQuestions = numberOfQuestions;
+	}
+	
+	public Test(String testName, String creatorName, int numberOfQuestions, List<Question> listQuestions) {
+		
+		this.testName = testName;
+		this.creatorName = creatorName;
+		this.numberOfQuestions = numberOfQuestions;
+		this.listQuestions = listQuestions;
+	}
+	
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+	public String getCreatorName() {
+		return creatorName;
+	}
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
+	public int getNumberOfQuestions() {
+		return numberOfQuestions;
+	}
+	public void setNumberOfQuestions(int numberOfQuestions) {
+		this.numberOfQuestions = numberOfQuestions;
+	}
+	public List<Question> getListQuestions() {
+		return listQuestions;
+	}
+	public void setListQuestions(List<Question> listQuestions) {
+		this.listQuestions = listQuestions;
 	}
 
-	public String getNumeCreator() {
-		return numeCreator;
-	}
-
-	public void setNumeCreator(String numeCreator) {
-		this.numeCreator = numeCreator;
-	}
-
-	public String getNumeTest() {
-		return numeTest;
-	}
-
-	public void setNumeTest(String numeTest) {
-		this.numeTest = numeTest;
-	}
-
-	public ArrayList<Intrebare> getListaIntrebari() {
-		return listaIntrebari;
-	}
-
-	public void setListaIntrebari(ArrayList<Intrebare> listaIntrebari) {
-		this.listaIntrebari = listaIntrebari;
-	}
-
-	public int getNrIntrebari() {
-		return nrIntrebari;
-	}
-
-	public void setNrIntrebari(int nrIntrebari) {
-		this.nrIntrebari = nrIntrebari;
-	}
-
-	public int getIdTest() {
-		return idTest;
-	}
-
-	public void setIdTest(int idTest) {
-		this.idTest = idTest;
-	}
+	
 	
 
 }

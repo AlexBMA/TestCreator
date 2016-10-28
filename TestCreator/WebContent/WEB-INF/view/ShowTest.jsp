@@ -10,15 +10,15 @@
 <body>
 	
 	<div id="container">
-		<header></header>
+		<header id="header"></header>
 		<br/>
-		<main>
+		<main id="main">
 			<h2>Nume Test: </h2>
 			<h2>Autor Test: </h2>
 			<h2>Numar intrebari: </h2>
 		</main>
 		<br/>
-		<footer></footer>
+		<footer id="footer"></footer>
 		
 		
 		

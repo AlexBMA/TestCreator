@@ -1,16 +1,32 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 
-	
+		@Id
+		@GeneratedValue(strategy= GenerationType.IDENTITY)
+		@Column(name = "id", updatable = false, nullable = false)
 		private int id;
+		
+		@Column(name="user_name")
 		private String userName;
+		@Column(name="pass")
 		private String pass;
+		@Column(name="role")
 		private String role;
 		
-		
-		
-		
+		public User()
+		{
+			
+		}		
 		
 		public User(String userName, String pass, String role) {
 			super();

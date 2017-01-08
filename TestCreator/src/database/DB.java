@@ -17,10 +17,7 @@ import model.Answer;
 import model.Question;
 import model.Test;
 import model.User;
-import modelMag.Cart;
-import modelMag.Product;
-import modelMag.ProductFromCart;
-import modelMag.ProductType;
+
 
 public class DB {
 	

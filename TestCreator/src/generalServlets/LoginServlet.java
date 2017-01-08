@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import database.DB;
+import generalservices.LoginService;
+import model.User;
 import services.*;
 
 /**
@@ -30,15 +32,8 @@ public class LoginServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		
-		DB.makeCon();
-	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -53,39 +48,39 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		DB.DBConnect();
 		
-		String user = request.getParameter("user").trim();
+		String username = request.getParameter("user").trim();
 		String pass = request.getParameter("pass").trim();
 		
+		LoginService loginService = new LoginService();
 		
-		boolean rez =LoginService.testUser(user, pass);
+		boolean rez =loginService.checkUsernameAndPass(DB.getSessionFactory(), username, pass);
 		
-		if(rez == true)
+		if(rez  == true)
 		{
-			String userRole = LoginService.getUserRole();
-			RequestDispatcher requestDispacher;
 			
-			if(userRole.equalsIgnoreCase("p"))
+			User user = loginService.getUser();
+			
+			HttpSession theSession  = request.getSession(true);
+			theSession.setAttribute("user", user);
+			String role = user.getRole();
+			
+			PathCreatorPrefixAndSufix pathCreator = new PathCreatorPrefixAndSufixImpl();
+			
+			String nextPage="";
+			System.out.println(role);
+			
+			if(role.equals("p"))
 			{
-				HttpSession session =  request.getSession();
-				session.setMaxInactiveInterval(600);
-				
-				//WEB-INF/view/ProfPage.jsp
-				PathCreatorPrefixAndSufix pathCreator = new PathCreatorPrefixAndSufixImpl();
-				
-				final String  NEXT_PAGE_NAME ="ProfPage";
-				
-				String nextPage= pathCreator.createPath(NEXT_PAGE_NAME);
-				
-				session.setAttribute("user", LoginService.getUserName());
-				request.setAttribute("user", LoginService.getUserPass());
-				
-				requestDispacher = request.getRequestDispatcher(nextPage);
-				requestDispacher.forward(request, response);
-				System.out.println("##");
+				nextPage=pathCreator.createPath("ProfPage");
 			}
-		
+			
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(nextPage);
+			requestDispatcher.forward(request, response);
 		}
+		
 	}
 
 }

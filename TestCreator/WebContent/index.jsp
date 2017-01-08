@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/main.css"  type="text/css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"  type="text/css"/>
 
 <title>Login Page</title>
 </head>
@@ -17,14 +17,14 @@
 		</header>
 		<br/>
 		<main id="main">
-			<form action="LoginServlet" method="post">
+			<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 		
 			<input type="text" placeholder="nume utilizator" name="user">
 			<input type="password" placeholder="parola" name="pass">
 			
 			<br/>
-			<button type="submit">Logare</button>
-			<button type="reset">Resetare camp</button>
+			<button type="submit">Log in</button>
+			<button type="reset">Reset fields</button>
 			
 			
 			

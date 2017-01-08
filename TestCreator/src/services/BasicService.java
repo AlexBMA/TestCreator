@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-public interface BasicDao<E> {
+public interface BasicService<E> {
 	
 	
 	public E getItem(SessionFactory factory,int id);

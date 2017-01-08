@@ -43,7 +43,7 @@ public class DBTableUser implements DBOperation<User> {
 	{
 		Session theSession = theSessionFactory.getCurrentSession();
 		
-		String hql="from User where username= ? and   pass= ? ";
+		String hql="from User where userName= ? and   pass= ? ";
 		
 		theSession.beginTransaction();
 		

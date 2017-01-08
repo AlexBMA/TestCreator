@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/main.css"  type="text/css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"  type="text/css"/>
 <title>Pagina principala profesor</title>
 </head>
 <body>
@@ -15,13 +15,13 @@
 		<br/>
 		<main id="main">
 		
-		<form action="MakeNewTestServlet" method="get">
+		<form action="${pageContext.request.contextPath}/MakeNewTestServlet" method="get">
 		
 			<button type="submit">Creaza test nou</button>
 		</form>
 		
 	
-		<form action="VizualizeazaTeste" method="get">
+		<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
 	
 			<button type="submit">Vizualizare teste</button>
 		</form>

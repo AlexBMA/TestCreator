@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.TestDao;
-import dao.PathCreatorPrefixAndSufix;
-import dao.PathCreatorPrefixAndSufixImpl;
+import services.PathCreatorPrefixAndSufix;
+import services.PathCreatorPrefixAndSufixImpl;
+import services.TestDao;
 import xmlpack.XMLXervices;
 
 /**
@@ -37,7 +37,7 @@ public class ShowTests extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String filePath="D:\\git\\TestCreator\\TestCreator\\fisiereXml\\Test.xml";
-		TestDao.loadAllTestFromXml(filePath);
+		//TestDao.loadAllTestFromXml(filePath);
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		

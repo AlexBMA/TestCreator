@@ -1,4 +1,4 @@
-package dao;
+package services;
 
 public interface XMLOperations {
 

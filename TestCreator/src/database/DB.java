@@ -10,87 +10,42 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import model.Answer;
+import model.Question;
+import model.Test;
 import model.User;
+import modelMag.Cart;
+import modelMag.Product;
+import modelMag.ProductFromCart;
+import modelMag.ProductType;
 
 public class DB {
-
-	private static InitialContext ctx;
-	private static DataSource pool = null;
-	private static Connection conn = null;
-	private static Statement stmt = null;
-
-	public static void makeCon() {
-		try {
-
-			ctx = new InitialContext();
-			Context context = (Context) ctx.lookup("java:comp/env");
-			pool = (DataSource) context.lookup("jdbc/TestDB");
-
-			if (pool == null)
-				System.out.println(" Poll is null ");
-			else {
-				conn = pool.getConnection();
-			}
-
-		} catch (NamingException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 	
+private static SessionFactory factory;
 	
-	
-	
-	public static User verifyUserAndPass(String user,String pass)
+	public static void  DBConnect()
 	{
-		
-		try {
-			String comandaSQL = "SELECT * From user where userName=" + "'" + user + "'" + " and "
-					+ " pass=" + "'" + pass + "'";
-			stmt = conn.createStatement();
-		
-			
-			ResultSet resultSet = 	stmt.executeQuery(comandaSQL);;
-			
-			if (resultSet.next()) {
-				
-				
-				
-				User u  = new User(user,  pass,resultSet.getString("role"));
-				
-				System.out.println("Utilizatorul:  " + resultSet.getString("userName") + "\n");
-				System.out.println("Parola:  " + resultSet.getString("pass") + " \n");
-				System.out.println("Rolul: "+resultSet.getString("role")+ " \n");
-
-				return u;
-			}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
-	public static Connection getConnection() {
-		return conn;
+		// create session factory
+				factory = new Configuration()
+											.configure("hibernate.cfg.xml")
+											.addAnnotatedClass(User.class)
+											.addAnnotatedClass(Test.class)
+											.addAnnotatedClass(Question.class)
+											.addAnnotatedClass(Answer.class)
+											.buildSessionFactory();
 	}
 	
+	public static  SessionFactory getSessionFactory()
+	{
+		return factory;
+	}
 	
-	public static void closeConn() {
-		try {
-
-			if (stmt != null)
-				stmt.close();
-			if (conn != null)
-				conn.close(); // return to pool
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
+	public static void closeFactory()
+	{
+		factory.close();
 	}
 
 }

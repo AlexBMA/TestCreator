@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.PathCreatorPrefixAndSufix;
-import dao.PathCreatorPrefixAndSufixImpl;
-import dao.QuestionDao;
-import dao.TestDao;
+import services.PathCreatorPrefixAndSufix;
+import services.PathCreatorPrefixAndSufixImpl;
+import services.QuestionDao;
+import services.TestDao;
 
 
 /**
@@ -49,7 +49,7 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
 		
-		TestDao.saveInXMLFile(fileName);
+		//TestDao.saveInXMLFile(fileName);
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		

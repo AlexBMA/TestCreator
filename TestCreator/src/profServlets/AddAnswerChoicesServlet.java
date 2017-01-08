@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AnswerDao;
-import dao.QuestionDao;
-import dao.PathCreatorPrefixAndSufix;
-import dao.PathCreatorPrefixAndSufixImpl;
+import services.AnswerDao;
+import services.PathCreatorPrefixAndSufix;
+import services.PathCreatorPrefixAndSufixImpl;
+import services.QuestionDao;
 
 /**
  * Servlet implementation class AdaugaVarianteDeRaspuns

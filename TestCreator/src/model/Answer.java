@@ -2,9 +2,9 @@ package model;
 
 
 
-public class Answer extends TopEntity {
+public class Answer  {
 
-	
+	private int id;
 	private String answerText;
 	private int trueFalse;
 	
@@ -30,7 +30,12 @@ public class Answer extends TopEntity {
 		this.trueFalse = trueFalse;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	
 

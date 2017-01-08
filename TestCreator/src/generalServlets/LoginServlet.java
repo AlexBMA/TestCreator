@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import database.DB;
-import dao.*;
+import services.*;
 
 /**
  * Servlet implementation class LoginServlet
@@ -72,7 +72,10 @@ public class LoginServlet extends HttpServlet {
 				
 				//WEB-INF/view/ProfPage.jsp
 				PathCreatorPrefixAndSufix pathCreator = new PathCreatorPrefixAndSufixImpl();
-				String nextPage= pathCreator.createPath("ProfPage");
+				
+				final String  NEXT_PAGE_NAME ="ProfPage";
+				
+				String nextPage= pathCreator.createPath(NEXT_PAGE_NAME);
 				
 				session.setAttribute("user", LoginService.getUserName());
 				request.setAttribute("user", LoginService.getUserPass());

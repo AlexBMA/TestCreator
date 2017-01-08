@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jdom2.test.cases.TestSerialization;
 
-import dao.PathCreatorPrefixAndSufix;
-import dao.PathCreatorPrefixAndSufixImpl;
-import dao.TestDao;
+import services.PathCreatorPrefixAndSufix;
+import services.PathCreatorPrefixAndSufixImpl;
+import services.TestDao;
 
 /**
  * Servlet implementation class AdaugaIntrebareServlet

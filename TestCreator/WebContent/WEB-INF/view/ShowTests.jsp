@@ -52,8 +52,8 @@
 						%>
 						<tr>
 						<td><%=key %></td>
-						<td><%=testTemp.getNumeCreator() %></td>
-						<td><%=testTemp.getNrIntrebari() %></td>
+						<td><%=testTemp.getCreatorName() %></td>
+						<td><%=testTemp.getNumberOfQuestions() %></td>
 						<td>
 							<form action="" method="post"> 
 							<input type="text" value="<%=key %>" readonly>

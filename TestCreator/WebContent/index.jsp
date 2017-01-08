@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/main.css"  type="text/css"/>
 
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
 	<div id="container">

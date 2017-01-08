@@ -3,9 +3,9 @@ package model;
 
 import java.util.List;
 
-public class Question extends TopEntity{
+public class Question {
 
-
+	private int id;
 	private String questionText;
 	private int numberOfCorrectAnswers;
 	private int numberOfAnswers;
@@ -57,7 +57,12 @@ public class Question extends TopEntity{
 		this.listAnswersi = listAnswersi;
 	}
 
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 
 	

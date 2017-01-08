@@ -1,11 +1,11 @@
 package model;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-public class Test extends TopEntity{
+public class Test {
 
-	
+	private int id;
 	private String testName;
 	private String creatorName;
 	private int numberOfQuestions;
@@ -56,6 +56,11 @@ public class Test extends TopEntity{
 	}
 
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 
 }

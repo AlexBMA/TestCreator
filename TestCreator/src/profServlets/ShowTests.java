@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestDao;
+import services.TestService;
 import xmlpack.XMLXervices;
 
 /**
@@ -47,7 +47,7 @@ public class ShowTests extends HttpServlet {
 				//"VizualizareTeste.jsp";
 		
 		
-		request.setAttribute("toateTestele", TestDao.getToateTestele());
+	//	request.setAttribute("toateTestele", TestService.getToateTestele());
 		
 		RequestDispatcher requestDispacher = request.getRequestDispatcher(page);
 		requestDispacher.forward(request, response);

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/main.css"  type="text/css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"  type="text/css"/>
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,12 +18,10 @@
 		
 		<h2>Creeaza test</h2>
 		
-		<form action="CreateTestServlet" method="post" >
+		<form action="${pageContext.request.contextPath}/CreateTestServlet" method="post" >
 			
-			<input type="text" placeholder="nume test" name="numetest">
-			
-			<input type="text" placeholder="nume autor" name="numneautor">
-			<input type="number"  placeholder="numar intrebari" min="1" name="numarintrebari">
+			<input type="text" placeholder="test name" name="numetest">
+			<input type="text" placeholder="test author" name="numeautor">
 			<br/>
 			<button type="submit">Create Test </button>
 			<button type="reset">Reset</button>

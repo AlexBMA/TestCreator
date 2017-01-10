@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,11 +43,19 @@ public class Test {
 		
 	}
 	
+	public Test(String testName,String creatorName)
+	{
+		this.testName = testName;
+		this.creatorName = creatorName;
+		this.listQuestions = new ArrayList<>();
+	}
+	
 	public Test(String testName, String creatorName, int numberOfQuestions)
 	{
 		this.testName = testName;
 		this.creatorName = creatorName;
 		this.numberOfQuestions = numberOfQuestions;
+		this.listQuestions = new ArrayList<>();
 	}
 	
 	public Test(String testName, String creatorName, int numberOfQuestions, List<Question> listQuestions) {

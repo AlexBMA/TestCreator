@@ -41,13 +41,7 @@ public class AddQuestionTextAndNumberOfAnswerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
-
-		String testName= request.getParameter("numeTest").trim();
-		String testCreator = request.getParameter("numeAutor").trim();
-		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
-		
-			
+					
 		String questionText = request.getParameter("textIntrebare").trim();
 		
 		int numberOfAnswers = Integer.parseInt(request.getParameter("numarVariante").trim());
@@ -70,9 +64,7 @@ public class AddQuestionTextAndNumberOfAnswerServlet extends HttpServlet {
 		request.setAttribute("numarVariante", numberOfAnswers);
 		request.setAttribute("numarVarianteCorecte", numberOfCorrectAnswers);
 		
-		request.setAttribute("numeTest" , testName);
-		request.setAttribute("autorTest", testCreator);
-		request.setAttribute("numarIntrebari", numberOfQuestions);
+	
 		
 		requestDispacher.forward(request, response);
 		

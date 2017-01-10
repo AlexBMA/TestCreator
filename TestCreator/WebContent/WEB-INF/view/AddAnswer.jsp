@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="model.*" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +15,14 @@
 		<br/>
 		<main id="main">
 		
-			
-		<h3> Nume test: <%=request.getAttribute("numeTest") %></h3>
-		<h4> Nume autor:  <%=request.getAttribute("autorTest") %></h4>
-		<h4> Numar intrebari al testului: <%=request.getAttribute("numarIntrebari") %></h4>
+		<%
+			Test temp =(Test)session.getAttribute("test");
+		%>
+		<h3> Name test: <%=temp.getTestName() %></h3>
+		
+		<h4> Name creator:  <%=temp.getCreatorName() %></h4>
+		<h4> Number of questions: <%=temp.getListQuestions().size() %></h4>
+		
 		<h4> Numar intreabare curenta: </h4>
 		
 		<h5>Intrebare:  </h5>
@@ -24,7 +30,7 @@
 			<%=request.getAttribute("textIntrebare").toString() %>
 		</p>
 		
-		<form action="AdaugaVarianteDeRaspuns" method="post" id="adaugaRaspuns">
+		<form action="${pageContext.request.contextPath}/AdaugaVarianteDeRaspuns" method="post" id="adaugaRaspuns">
 			
 			<input type="text" value="<%=request.getAttribute("textIntrebare").toString() %>" readonly name="textIntreabare">
 			
@@ -60,12 +66,7 @@
 			%>
 			
 			<input type="number" value="<%=size2 %>" name="numarVarianteIncorecte" readonly>
-			
-			<input type="text" value="<%=request.getAttribute("numeTest")%>" name="numeTest" readonly>
-			<input type="text" value="<%=request.getAttribute("autorTest") %>" name="numeAutor" readonly>
-			<input type="text" value="<%=request.getAttribute("numarIntrebari") %>" name="numarIntrebari" readonly>
-			
-			
+		
 			
 			<br/>
 			

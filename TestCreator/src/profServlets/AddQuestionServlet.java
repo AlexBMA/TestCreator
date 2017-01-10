@@ -13,7 +13,7 @@ import org.jdom2.test.cases.TestSerialization;
 
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestDao;
+import services.TestService;
 
 /**
  * Servlet implementation class AdaugaIntrebareServlet
@@ -51,18 +51,9 @@ public class AddQuestionServlet extends HttpServlet {
 		
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
-		String testName = request.getParameter("numeTest").trim();
-		
-		String CreatorName = TestDao.getCreatorName(testName);
-		int numberOfQuestions = TestDao.getNumarIntrebari(testName);
-		
-		
+	
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
-		
-		request.setAttribute("numeAutor", CreatorName);
-		request.setAttribute("numarIntrebari", numberOfQuestions);
-		request.setAttribute("numeTest", testName);
-		
+			
 		reqDispacher.forward(request, response);
 		
 		

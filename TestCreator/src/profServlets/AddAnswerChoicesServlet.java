@@ -1,6 +1,8 @@
 package profServlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import services.AnswerDao;
+import model.Answer;
+import model.Question;
+import model.Test;
+import services.AnswerService;
+import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionDao;
+import services.QuestionService;
 
 /**
  * Servlet implementation class AdaugaVarianteDeRaspuns
@@ -43,39 +50,21 @@ public class AddAnswerChoicesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		String testName= request.getParameter("numeTest").trim();
-		String testCreator = request.getParameter("numeAutor").trim();
-		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarIntrebari").trim());
-		
 		
 		int numberOfCorrectAnswers = Integer.parseInt(request.getParameter("numarVarianteCorecte").trim());
 		int numberOfIncorrectAnswers = Integer.parseInt(request.getParameter("numarVarianteIncorecte").trim());
 		String textQuestion = request.getParameter("textIntreabare").trim();
-		
-		//System.out.println("Text intreabre:"+textIntrebare);
-		
-		AnswerDao.createListaRaspunsuri();
-		
-		for(int i=0;i<numberOfCorrectAnswers;i++)
-		{
-			String correctAnswer = request.getParameter("textRaspunsC"+i).trim();
-		//	System.out.println(variantaCorecta);
 			
-			AnswerDao.createRaspuns(correctAnswer, 1);
-			
-		}
 		
-		for(int i=0;i<numberOfIncorrectAnswers;i++)
-		{
-			String incorrectAnswer = request.getParameter("textRaspunsI"+i).trim();
-		//	System.out.println(variantaGresita);
-			
-			AnswerDao.createRaspuns(incorrectAnswer, 0);
-		}
+		List<Answer> listAnswers = createAnswerList(request,numberOfCorrectAnswers,numberOfIncorrectAnswers);
 		
-	
-		QuestionDao.createIntrebare(textQuestion, numberOfCorrectAnswers, numberOfCorrectAnswers+numberOfIncorrectAnswers, AnswerDao.getListaRaspunsuri());
+		Question question = new Question(textQuestion , numberOfCorrectAnswers, listAnswers.size(), listAnswers);
 		
+		HttpSession theSession = request.getSession(false);
+		Test test = (Test) theSession.getAttribute("test");
+		test.getListQuestions().add(question);
+		theSession.setAttribute("test",test);
+				
 		
 		String msg= "Intrebare creata cu succes";
 		System.out.println(msg);
@@ -87,14 +76,37 @@ public class AddAnswerChoicesServlet extends HttpServlet {
 		
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
-		
-		request.setAttribute("numeTest" , testName);
-		request.setAttribute("numeAutor", testCreator);
-		request.setAttribute("numarIntrebari", numberOfQuestions);
-		
+				
 		RequestDispatcher  requestDispacher = request.getRequestDispatcher(path);
 		requestDispacher.forward(request, response);
 		
+	}
+	
+	protected List<Answer> createAnswerList(HttpServletRequest request, int numberOfCorrectAnswers,int numberOfIncorrectAnswers)
+	{
+		
+		
+		List<Answer> listAnswers = new ArrayList<>();
+		
+		Answer answer;
+		String answerText;
+		
+		for(int i=0;i<numberOfCorrectAnswers;i++)
+		{
+			answerText = request.getParameter("textRaspunsC"+i).trim();	
+			answer = new Answer(answerText , 1);
+			listAnswers.add(answer);
+			
+		}
+		
+		for(int i=0;i<numberOfIncorrectAnswers;i++)
+		{
+			answerText = request.getParameter("textRaspunsI"+i).trim();
+			answer = new Answer(answerText, 0);
+			listAnswers.add(answer);
+		}
+		
+		return listAnswers;
 	}
 
 }

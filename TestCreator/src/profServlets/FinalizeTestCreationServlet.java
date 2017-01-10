@@ -1,16 +1,22 @@
 package profServlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import database.DB;
+import model.Test;
+import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionDao;
-import services.TestDao;
+import services.QuestionService;
+import services.TestService;
 
 
 /**
@@ -32,7 +38,6 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -40,24 +45,25 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+			
+		//	String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
-		String testName = request.getParameter("numeTest").trim();
+		BasicService<Test> testService = new TestService();
 		
-		TestDao.addQuestonsToTest(QuestionDao.getListaIntrebari(), testName);
+		HttpSession theSession = request.getSession(false);
 		
-		String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
+		Test test = (Test)theSession.getAttribute("test");
+		test.setNumberOfQuestions(test.getListQuestions().size());
 		
-		
-		//TestDao.saveInXMLFile(fileName);
+		testService.createItem(DB.getSessionFactory(), test);
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		final String  NEXT_PAGE_NAME ="ProfPage";
+		String  NEXT_PAGE_NAME ="ProfPage";
 		
-		String page=pathCreator.createPath(NEXT_PAGE_NAME);
-		
-		response.sendRedirect(page);
+		NEXT_PAGE_NAME =pathCreator.createPath(NEXT_PAGE_NAME);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(NEXT_PAGE_NAME);
+		requestDispatcher.forward(request, response);
 		
 	}
 

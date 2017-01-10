@@ -8,12 +8,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import model.Test;
+import model.Answer;
 
-public class DBTableTest implements DBOperation<Test>{
+public class DBTableAnswer implements DBOperation<Answer>{
 
 	@Override
-	public void insert(SessionFactory theSessionFactory, Test ob) {
+	public void insert(SessionFactory theSessionFactory, Answer ob) {
 		
 		// get the session
 		Session theSession = theSessionFactory.getCurrentSession();
@@ -33,13 +33,13 @@ public class DBTableTest implements DBOperation<Test>{
 	}
 
 	@Override
-	public Test getARow(SessionFactory theSessionFactory, int id) {
+	public Answer getARow(SessionFactory theSessionFactory, int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Test> getAllRow(SessionFactory theSessionFactory) {
+	public List<Answer> getAllRow(SessionFactory theSessionFactory) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -51,11 +51,10 @@ public class DBTableTest implements DBOperation<Test>{
 	}
 
 	@Override
-	public List<Test> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
+	public List<Answer> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	
 	
 }

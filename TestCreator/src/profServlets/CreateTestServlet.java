@@ -8,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.Test;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionDao;
-import services.TestDao;
+import services.QuestionService;
+import services.TestService;
 
 /**
  * Servlet implementation class CreateTestServlet
@@ -46,16 +48,15 @@ public class CreateTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String testName= request.getParameter("numetest").trim();
-		String testCreator = request.getParameter("numneautor").trim();
-		int numberOfQuestions =  Integer.parseInt(request.getParameter("numarintrebari").trim());
+		String testCreator = request.getParameter("numeautor").trim();
+			
 		
-	//	System.out.println(numeTest);
-	//	System.out.println(autorTest);
-	//	System.out.println(nrIntrebari);
+		Test theTest = new Test(testName,testCreator);
 		
-		TestDao.createTest(testName, testCreator, numberOfQuestions);
+		HttpSession theSession = request.getSession(false);
 		
-		QuestionDao.createListaIntrebari();
+		theSession.setAttribute("test", theTest);
+		
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
@@ -64,10 +65,6 @@ public class CreateTestServlet extends HttpServlet {
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
-		
-		request.setAttribute("numeTest" , testName);
-		request.setAttribute("autorTest", testCreator);
-		request.setAttribute("numarIntrebari", numberOfQuestions);
 		
 		reqDispacher.forward(request, response);
 		

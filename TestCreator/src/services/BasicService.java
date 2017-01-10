@@ -11,10 +11,10 @@ public interface BasicService<E> {
 	
 	public List<E> getAllItems(SessionFactory factory);
 	
-	public void editItem();
+	public void editItem(SessionFactory factory);
 	
 	public void deleteItem(SessionFactory factory, int id);
 	
-	public void createItem(E item);
+	public void createItem(SessionFactory factory,E item);
 	
 }

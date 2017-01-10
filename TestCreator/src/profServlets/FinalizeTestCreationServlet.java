@@ -59,11 +59,16 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		String  NEXT_PAGE_NAME ="ProfPage";
+		String  NEXT_PAGE_NAME ="TestSomeStuff";
 		
 		NEXT_PAGE_NAME =pathCreator.createPath(NEXT_PAGE_NAME);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(NEXT_PAGE_NAME);
-		requestDispatcher.forward(request, response);
+		
+		System.out.println(NEXT_PAGE_NAME);
+		
+		response.sendRedirect(NEXT_PAGE_NAME);
+		
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher(NEXT_PAGE_NAME);
+		//requestDispatcher.forward(request, response);
 		
 	}
 

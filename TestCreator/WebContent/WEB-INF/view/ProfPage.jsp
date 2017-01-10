@@ -19,13 +19,13 @@
 		
 		<form action="${pageContext.request.contextPath}/MakeNewTestServlet" method="get">
 		
-			<button type="submit">Creaza test nou</button>
+			<button type="submit">Make new test</button>
 		</form>
 		
 	
 		<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
 	
-			<button type="submit">Vizualizare teste</button>
+			<button type="submit">View tests</button>
 		</form>
 	
 			

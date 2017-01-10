@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import model.Answer;
+import model.Question;
 
 public class DBTableAnswer implements DBOperation<Answer>{
 
@@ -40,13 +41,40 @@ public class DBTableAnswer implements DBOperation<Answer>{
 
 	@Override
 	public List<Answer> getAllRow(SessionFactory theSessionFactory) {
-		// TODO Auto-generated method stub
-		return null;
+		 // get the session
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		String hql="from Answer";
+		
+		List<Answer> answerList= theSession.createQuery(hql).getResultList();
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
+		
+		return answerList;
 	}
 
 	@Override
 	public void deleteRow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
+	Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		Answer answer = theSession.get(Answer.class, id);
+		theSession.delete(answer);
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
 		
 	}
 

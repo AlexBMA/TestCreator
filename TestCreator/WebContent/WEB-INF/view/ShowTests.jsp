@@ -29,41 +29,53 @@
 		
 		<br/>
 		<main id="main">
-		<h2>Toate testele care au fost create</h2>
+		<h2>All test available </h2>
 		
 		<table>
 			<thead>
 				<tr>
-					<td>Nume Test</td>
-					<td>Autor</td>
-					<td>Numar intrebari</td>
-					<td>Optiuni</td>
+					<th>Name test</th>
+					<th>Author test</th>
+					<th>Questions</th>
+					<th>Options</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%	
-					LinkedHashMap<String,Test> toateTestele = (LinkedHashMap)request.getAttribute("toateTestele");
-					int size = toateTestele.size();
-					Set<String> keys = toateTestele.keySet();
-					Test testTemp;
-					for(String key: keys)
-					{	
-						testTemp = toateTestele.get(key);
+					List<Test> testList = (List)request.getAttribute("testlist");
+					
+					User user = (User)session.getAttribute("user");
+					int userId = user.getId();
+					for(Test temp: testList)
+					{	int size = temp.getListQuestions().size();
+						
 						%>
 						<tr>
-						<td><%=key %></td>
-						<td><%=testTemp.getCreatorName() %></td>
-						<td><%=testTemp.getNumberOfQuestions() %></td>
-						<td>
-							<form action="" method="post"> 
-							<input type="text" value="<%=key %>" readonly>
+						<td><%=temp.getTestName() %></td>
+						<td><%=temp.getCreatorName() %></td>
+						<td><%=size%></td>
+						<td>		
+							<form action="${pageContext.request.contextPath}/ViewTestServlet" method="get">
+							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>
+							<button type="submit">View Test</button> 
+							</form>
+							
+							<%if(userId==temp.getUserId()) 
+								{
+							%>
+							<form action="${pageContext.request.contextPath}/" method="post"> 
+							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>s
 							<button type="submit">Edit Test</button> 
 							</form>	
 							
-							<form action="" method="post">
-							<input type="text" value="<%=key %>" readonly>
+							<form action="${pageContext.request.contextPath}/" method="post">
+							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>
 							<button type="submit">Delete Test</button>
 							</form>
+							<%
+								}
+							%>
+							
 						</td>
 					</tr>
 				<% }%>

@@ -11,6 +11,8 @@ public interface BasicService<E> {
 	
 	public List<E> getAllItems(SessionFactory factory);
 	
+	public List<E> getSimilarItems(SessionFactory factory,int idSimilar);
+	
 	public void editItem(SessionFactory factory);
 	
 	public void deleteItem(SessionFactory factory, int id);

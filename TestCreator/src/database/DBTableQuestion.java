@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import model.Question;
+import model.Test;
 
 public class DBTableQuestion implements DBOperation<Question> {
 
@@ -32,26 +33,84 @@ public class DBTableQuestion implements DBOperation<Question> {
 
 	@Override
 	public Question getARow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		   // get the session
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		Question question = theSession.get(Question.class, id);
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
+		
+		return question;
 	}
 
 	@Override
 	public List<Question> getAllRow(SessionFactory theSessionFactory) {
-		// TODO Auto-generated method stub
-		return null;
+				
+			   // get the session
+				Session theSession = theSessionFactory.getCurrentSession();
+				
+				//begins the transaction
+				theSession.getTransaction().begin();
+				
+				String hql="from Question";
+				
+				List<Question> questionList= theSession.createQuery(hql).getResultList();
+					
+				// commits the transaction
+				theSession.getTransaction().commit();
+				
+				//close the session
+				theSession.close();
+				
+				return questionList;
 	}
 
 	@Override
 	public void deleteRow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
+		
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		Question question = theSession.get(Question.class, id);
+		theSession.delete(question);
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
 		
 	}
 
 	@Override
 	public List<Question> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// get the session
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		String hql="from Question";
+		
+		List<Question> questionList= theSession.createQuery(hql).getResultList();
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
+		
+		return questionList;
 	}
 	
 	

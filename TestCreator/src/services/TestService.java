@@ -24,15 +24,26 @@ public class TestService implements BasicService<Test>  {
 
 	@Override
 	public Test getItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DBOperation<Test> testOpearions = new DBTableTest();
+		
+		BasicService<Question> questionService = new QuestionService();
+		
+	//	List<Question> questionList = questionService.getItem(factory, id);
+		
+		Test test = testOpearions.getARow(factory, id);
+		
+		return test;
 	}
 
 	@Override
 	public List<Test> getAllItems(SessionFactory factory) {
+		
 		DBOperation<Test> testOpearions = new DBTableTest();
 		
-		return null;
+		List<Test> testList = testOpearions.getAllRow(factory);
+		
+		return testList;
 	}
 
 	
@@ -65,6 +76,12 @@ public class TestService implements BasicService<Test>  {
 		
 		testOpearions.insert(factory, item);
 		
+	}
+
+	@Override
+	public List<Test> getSimilarItems(SessionFactory factory, int idSimilar) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

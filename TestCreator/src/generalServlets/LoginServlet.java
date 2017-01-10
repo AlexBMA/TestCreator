@@ -71,6 +71,7 @@ public class LoginServlet extends HttpServlet {
 			String nextPage="";
 			System.out.println(role);
 			
+			
 			if(role.equals("p"))
 			{
 				nextPage=pathCreator.createPath("ProfPage");

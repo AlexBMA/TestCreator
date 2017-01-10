@@ -34,20 +34,62 @@ public class DBTableTest implements DBOperation<Test>{
 
 	@Override
 	public Test getARow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+			   // get the session
+				Session theSession = theSessionFactory.getCurrentSession();
+				
+				//begins the transaction
+				theSession.getTransaction().begin();
+				
+				Test test = theSession.get(Test.class, id);
+					
+				// commits the transaction
+				theSession.getTransaction().commit();
+				
+				//close the session
+				theSession.close();
+				
+				return test;
 	}
 
 	@Override
 	public List<Test> getAllRow(SessionFactory theSessionFactory) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// get the session
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		String hql="from Test";
+		
+		List<Test> testList= theSession.createQuery(hql).getResultList();
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
+		
+		return testList;
 	}
 
 	@Override
 	public void deleteRow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
 		
+		   // get the session
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		//begins the transaction
+		theSession.getTransaction().begin();
+		
+		Test test = theSession.get(Test.class, id);
+		theSession.delete(test);
+			
+		// commits the transaction
+		theSession.getTransaction().commit();
+		
+		//close the session
+		theSession.close();
 	}
 
 	@Override

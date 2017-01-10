@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import database.DB;
 import model.Test;
+import model.User;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
@@ -52,8 +53,10 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		
 		HttpSession theSession = request.getSession(false);
 		
+		User user = (User)theSession.getAttribute("user");
 		Test test = (Test)theSession.getAttribute("test");
 		test.setNumberOfQuestions(test.getListQuestions().size());
+		test.setUserId(user.getId());
 		
 		testService.createItem(DB.getSessionFactory(), test);
 		

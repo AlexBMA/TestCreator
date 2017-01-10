@@ -15,13 +15,17 @@ public class AnswerService implements BasicService<Answer> {
 
 	@Override
 	public Answer getItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		DBOperation<Answer>answerOpearions = new DBTableAnswer();
+		
+		return answerOpearions.getARow(factory, id);
+		
+		
 	}
 
 	@Override
 	public List<Answer> getAllItems(SessionFactory factory) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -45,6 +49,12 @@ public class AnswerService implements BasicService<Answer> {
 			DBOperation<Answer>answerOpearions = new DBTableAnswer();
 			answerOpearions.insert(factory, item);
 		
+	}
+
+	@Override
+	public List<Answer> getSimilarItems(SessionFactory factory, int idSimilar) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

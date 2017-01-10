@@ -10,13 +10,23 @@ import database.DBTableTest;
 import model.Answer;
 import model.Question;
 import model.Test;
+import oracle.net.aso.q;
 
 public class QuestionService implements BasicService<Question>{
 
 	@Override
 	public Question getItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		
+		BasicService<Answer> answerService = new AnswerService();
+		
+		Question q = questionOpearions.getARow(factory, id);
+		List<Answer> listAnswer = q.getListAnswersi();
+		
+		
+		
+		return q;
 	}
 
 	@Override
@@ -54,6 +64,15 @@ public class QuestionService implements BasicService<Question>{
 		questionOpearions.insert(factory, item);
 		
 		
+	}
+
+	@Override
+	public List<Question> getSimilarItems(SessionFactory factory, int idSimilar) {
+		
+		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		List<Question> questionList;
+		
+		return null;
 	}
 	
 	

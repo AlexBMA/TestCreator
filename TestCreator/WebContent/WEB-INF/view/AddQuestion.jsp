@@ -32,7 +32,7 @@
 
 	
 			<h4>Question text</h4>
-			 <textarea rows="4" cols="50" name="textIntrebare" form="adaugaIntrebare">
+			 <textarea rows="4" cols="30" name="textIntrebare" form="adaugaIntrebare">
                 </textarea>
 			<br/>
 			

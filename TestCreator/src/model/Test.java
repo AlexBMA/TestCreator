@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +33,11 @@ public class Test {
 	@Column(name="number_of_question")
 	private int numberOfQuestions;
 	
-	@OneToMany
+	@Column(name="user_id")
+	private int userId;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(    name="test_question", 
 							joinColumns=@JoinColumn(name="question_id"),
 							inverseJoinColumns=@JoinColumn(name="test_id")
@@ -99,4 +105,13 @@ public class Test {
 		this.id = id;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	
 }

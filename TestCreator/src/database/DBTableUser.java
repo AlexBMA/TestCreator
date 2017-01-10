@@ -17,8 +17,20 @@ public class DBTableUser implements DBOperation<User> {
 
 	@Override
 	public User getARow(SessionFactory theSessionFactory, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		Session theSession = theSessionFactory.getCurrentSession();
+		
+		
+		theSession.beginTransaction();
+		
+		User user = theSession.get(User.class, id);
+		
+		theSession.getTransaction().commit();
+		
+		theSession.close();
+		
+		return user;
 	}
 
 	@Override

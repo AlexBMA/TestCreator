@@ -4,7 +4,9 @@ package model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +31,8 @@ public class Question {
 	private int numberOfCorrectAnswers;
 	@Column(name="number_of_answers")
 	private int numberOfAnswers;
-
-	@OneToMany
+	
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(    name="question_answer", 
 							joinColumns=@JoinColumn(name="answer_id"),
 							inverseJoinColumns=@JoinColumn(name="question_id")

@@ -34,8 +34,8 @@ public class Question {
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(    name="question_answer", 
-							joinColumns=@JoinColumn(name="answer_id"),
-							inverseJoinColumns=@JoinColumn(name="question_id")
+							joinColumns=@JoinColumn(name="question_id"),
+							inverseJoinColumns=@JoinColumn(name="answer_id")
 						)
 	private List<Answer> listAnswersi;
 	

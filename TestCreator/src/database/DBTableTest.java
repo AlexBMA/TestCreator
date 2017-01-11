@@ -1,9 +1,8 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.List;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -60,6 +59,7 @@ public class DBTableTest implements DBOperation<Test>{
 		//begins the transaction
 		theSession.getTransaction().begin();
 		
+	
 		String hql="from Test";
 		
 		List<Test> testList= theSession.createQuery(hql).getResultList();

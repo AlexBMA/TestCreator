@@ -20,7 +20,10 @@
 						Creaza test
 					</li>
 					<li>
-						Iesire
+						<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
+	
+							<button type="submit">Log out</button>
+						</form>
 					</li>
 				</ul>
 			</nav>

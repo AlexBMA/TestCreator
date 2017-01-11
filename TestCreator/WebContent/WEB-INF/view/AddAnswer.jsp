@@ -11,7 +11,13 @@
 </head>
 <body>
 	<div id="container">
-		<header id="header"></header>
+		<header id="header">
+		
+			<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
+				<button type="submit">Log out</button>
+			</form>
+			
+		</header>
 		<br/>
 		<main id="main">
 		
@@ -42,7 +48,7 @@
 				for(int i=0;i<size;i++)
 				{%>
 					<h4>Varianta raspuns corecta </h4>
-			 		<textarea rows="4" cols="50" name="textRaspunsC<%=i%>"  form="adaugaRaspuns">
+			 		<textarea rows="4" cols="30" name="textRaspunsC<%=i%>"  form="adaugaRaspuns">
                 		</textarea>
 					<br/>
 				
@@ -58,7 +64,7 @@
 				{%>
 				
 				<h4>Varianta raspuns incorecta </h4>
-		 		<textarea rows="4" cols="50" name="textRaspunsI<%=i%>"  form="adaugaRaspuns">
+		 		<textarea rows="4" cols="30" name="textRaspunsI<%=i%>"  form="adaugaRaspuns">
             		</textarea>
 				<br/>
 			

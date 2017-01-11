@@ -6,11 +6,11 @@ import org.hibernate.SessionFactory;
 
 import database.DBOperation;
 import database.DBTableQuestion;
-import database.DBTableTest;
+
 import model.Answer;
 import model.Question;
-import model.Test;
-import oracle.net.aso.q;
+
+
 
 public class QuestionService implements BasicService<Question>{
 

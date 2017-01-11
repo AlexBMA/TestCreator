@@ -47,6 +47,9 @@ public class ViewTestServlet extends HttpServlet {
 		BasicService<Test> testService = new TestService();
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
+		
+		
+		System.out.println(test.getListQuestions().size());
 		/*List<Question> listQuestion = test.getListQuestions();
 		int size= listQuestion.size();
 		System.out.println(size);

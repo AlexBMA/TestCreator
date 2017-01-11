@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,8 +38,8 @@ public class Test {
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(    name="test_question", 
-							joinColumns=@JoinColumn(name="question_id"),
-							inverseJoinColumns=@JoinColumn(name="test_id")
+							joinColumns=@JoinColumn(name="test_id"),
+							inverseJoinColumns=@JoinColumn(name="question_id")
 						)
 	private List<Question> listQuestions;
 	

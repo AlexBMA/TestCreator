@@ -12,7 +12,13 @@
 <body>
 	
 	<div id="container">
-		<header id="header"></header>
+		<header id="header">
+		
+		<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
+	
+			<button type="submit">Log out</button>
+		</form>
+		</header>
 		<br/>
 		
 		<main id="main">
@@ -21,17 +27,17 @@
 			
 			<h2>Name test: <%=test.getTestName() %> </h2>
 			<h2>Author test: <%=test.getCreatorName() %></h2>
-			<h2>Questions: <%=test.getListQuestions().size() %></h2>
+			<h2>Questions: <%=test.getNumberOfQuestions() %></h2>
 			
 			<ol>
 				<%List<Question> questionList = test.getListQuestions();
-				 // List<List<Answer>> answerList = (List<List<Answer>>)request.getAttribute("answerlist");
-				  for(Question q:questionList)
-				  {
+				  
+				 for(Question q:questionList)
+				  {	
 				%>
 				<li>
 					
-					<textarea rows="4" cols="30">Question: <%=q.getQuestionText() %></textarea>
+					<label><%=q.getQuestionText() %></label>
 					<h4><%=q.getNumberOfAnswers() %></h4>
 					<h4><%=q.getNumberOfCorrectAnswers() %></h4>
 					<ul>

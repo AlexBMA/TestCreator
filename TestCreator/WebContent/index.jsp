@@ -17,6 +17,7 @@
 		</header>
 		<br/>
 		<main id="main">
+		
 			<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 		
 			<input type="text" placeholder="nume utilizator" name="user">
@@ -24,11 +25,9 @@
 			
 			<br/>
 			<button type="submit">Log in</button>
-			<button type="reset">Reset fields</button>
+			<button type="reset">Reset fields</button>	
+			</form>
 			
-			
-			
-		</form>
 		</main>
 		<br/>
 		<footer id="footer">

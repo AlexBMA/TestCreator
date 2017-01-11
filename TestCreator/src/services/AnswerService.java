@@ -1,15 +1,12 @@
 package services;
 
-import java.util.ArrayList;
+
 import java.util.List;
-
 import org.hibernate.SessionFactory;
-
 import database.DBOperation;
 import database.DBTableAnswer;
-import database.DBTableQuestion;
 import model.Answer;
-import model.Question;
+
 
 public class AnswerService implements BasicService<Answer> {
 

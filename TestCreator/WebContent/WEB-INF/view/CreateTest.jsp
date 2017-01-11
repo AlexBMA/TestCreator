@@ -12,6 +12,12 @@
 	<div id="container">
 		
 		<header id="header">
+			
+			<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
+	
+				<button type="submit">Log out</button>
+			</form>
+		
 		</header>
 		<br/>
 		<main id="main">

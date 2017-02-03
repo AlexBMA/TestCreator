@@ -40,6 +40,7 @@
 					<label><%=q.getQuestionText() %></label>
 					<h4><%=q.getNumberOfAnswers() %></h4>
 					<h4><%=q.getNumberOfCorrectAnswers() %></h4>
+					
 					<ul>
 						<%
 							List<Answer> listAnswers = q.getListAnswersi();
@@ -49,7 +50,8 @@
 						 
 							<li>
 								<label><%=a.getAnswerText() %></label>
-								<label></label>
+								<label><%=a.getTrueFalse() %></label>
+								
 							</li>
 									
 						<%

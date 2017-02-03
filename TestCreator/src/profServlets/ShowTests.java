@@ -50,9 +50,8 @@ public class ShowTests extends HttpServlet {
 		List<Test> testList = testService.getAllItems(DB.getSessionFactory());
 		
 		
-		
 		final String  NEXT_PAGE_NAME ="ShowTests";
-		String page= pathCreator.createPath("ShowTests");
+		String page= pathCreator.createPath(NEXT_PAGE_NAME);
 		
 		request.setAttribute("testlist", testList);
 		

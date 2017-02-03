@@ -19,10 +19,10 @@ public class QuestionService implements BasicService<Question>{
 		
 		DBOperation<Question> questionOpearions = new DBTableQuestion();
 		
-		BasicService<Answer> answerService = new AnswerService();
+		//BasicService<Answer> answerService = new AnswerService();
 		
 		Question q = questionOpearions.getARow(factory, id);
-		List<Answer> listAnswer = q.getListAnswersi();
+		//List<Answer> listAnswer = q.getListAnswersi();
 		
 		
 		
@@ -70,9 +70,9 @@ public class QuestionService implements BasicService<Question>{
 	public List<Question> getSimilarItems(SessionFactory factory, int idSimilar) {
 		
 		DBOperation<Question> questionOpearions = new DBTableQuestion();
-		List<Question> questionList;
+		List<Question> questionList = questionOpearions.getAllSimilarRows(factory, idSimilar);
 		
-		return null;
+		return questionList;
 	}
 	
 	

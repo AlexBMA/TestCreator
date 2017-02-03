@@ -2,6 +2,9 @@ package database;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -94,15 +97,33 @@ public class DBTableQuestion implements DBOperation<Question> {
 	@Override
 	public List<Question> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
 		
+		
 		// get the session
 		Session theSession = theSessionFactory.getCurrentSession();
+		
+		/*
+		 * SELECT question.id,question.number_of_answers,question.question_text,number_of_correct_answers
+		 *  FROM  
+		 * question,test_question,test where test_question.test_id = test.id and 
+		 * question.id = test_question.question_id;
+		 */
 		
 		//begins the transaction
 		theSession.getTransaction().begin();
 		
-		String hql="from Question";
+		EntityManagerFactory emf = theSession.getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
 		
-		List<Question> questionList= theSession.createQuery(hql).getResultList();
+		
+		String hql="from Question";
+		//theSession.createQuery(hql).getResultList()
+		
+		String nativeQuery ="SELECT question.id,question.number_of_answers,question.question_text,number_of_correct_answers"
+				+ " FROM question,test_question,test where test_question.test_id =" +idType+ " and "
+				+"question.id = test_question.question_id";
+		
+		List<Question> questionList = em.createNativeQuery(nativeQuery, Question.class).getResultList();
+		
 			
 		// commits the transaction
 		theSession.getTransaction().commit();

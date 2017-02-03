@@ -49,23 +49,10 @@ public class ViewTestServlet extends HttpServlet {
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		
 		
+		
 		System.out.println(test.getListQuestions().size());
-		/*List<Question> listQuestion = test.getListQuestions();
-		int size= listQuestion.size();
-		System.out.println(size);
 		
-		List<List<Answer>> answerList = new ArrayList<>();
-		List<Answer> tempAnswerList;
-		
-		for(Question q:listQuestion)
-		{
-			size=q.getListAnswersi().size();
-			System.out.println(q.getListAnswersi().get(0).getAnswerText());
-			tempAnswerList = q.getListAnswersi();
-			answerList.add(tempAnswerList);
-		}
-		
-		*/
+	
 		
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
@@ -77,6 +64,8 @@ public class ViewTestServlet extends HttpServlet {
 		
 	//	request.setAttribute("questionlist", listQuestion);
 	//	request.setAttribute("answerlist",answerList);
+		
+		System.out.println("###########$#$^$%^%$^%$^$%^@$!$");
 		
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);	
 		reqDispacher.forward(request, response);

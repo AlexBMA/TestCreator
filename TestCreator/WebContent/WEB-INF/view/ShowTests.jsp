@@ -50,7 +50,7 @@
 					User user = (User)session.getAttribute("user");
 					int userId = user.getId();
 					for(Test temp: testList)
-					{	int size = temp.getListQuestions().size();
+					{	int size = temp.getNumberOfQuestions();
 						
 						%>
 						<tr>

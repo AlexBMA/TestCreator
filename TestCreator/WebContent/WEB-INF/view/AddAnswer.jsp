@@ -31,7 +31,7 @@
 		
 		<h4> Numar intreabare curenta: </h4>
 		
-		<h5>Intrebare:  </h5>
+		<h5>Question:  </h5>
 		<p>
 			<%=request.getAttribute("textIntrebare").toString() %>
 		</p>

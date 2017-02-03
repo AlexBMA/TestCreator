@@ -19,12 +19,14 @@ public class TestService implements BasicService<Test>  {
 	public Test getItem(SessionFactory factory, int id) {
 		
 		DBOperation<Test> testOpearions = new DBTableTest();
-		
 		BasicService<Question> questionService = new QuestionService();
 		
-	//	List<Question> questionList = questionService.getItem(factory, id);
-		
+	
 		Test test = testOpearions.getARow(factory, id);
+		List<Question> questionList = questionService.getSimilarItems(factory, test.getId());
+		
+		test.setListQuestions(questionList);
+		
 		
 		return test;
 	}

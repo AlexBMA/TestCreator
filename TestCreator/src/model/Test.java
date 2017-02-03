@@ -36,7 +36,7 @@ public class Test {
 	private int userId;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(    name="test_question", 
 							joinColumns=@JoinColumn(name="test_id"),
 							inverseJoinColumns=@JoinColumn(name="question_id")

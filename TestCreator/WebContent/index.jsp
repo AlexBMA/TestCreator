@@ -12,8 +12,8 @@
 	<div id="container">
 		
 		<header id="header">
-			<a href=""><button>Acasa</button></a>
-			<a href=""><button>Despre</button></a>
+			<a href=""><button>Home</button></a>
+			<a href=""><button>About</button></a>
 		</header>
 		<br/>
 		<main id="main">

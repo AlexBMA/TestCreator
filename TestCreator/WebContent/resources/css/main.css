@@ -10,7 +10,7 @@
 
 body {
     color: white;
-    background: grey;
+    background: black;
     
 }
 
@@ -21,13 +21,76 @@ a {
 ul li {
     list-style: none;
 }
+ol li{
+	list-style: none;
+}
 
 /* Custom CSS*/
 
 #container{
-    margin: 10px auto 10px;
+    margin: 1% auto 1%;
     width: 75%;
-    background: yellow;
-    border-radius: 15px;
-    color : black;
+    background: #008080;
+    border-radius: 2%;
+    color : white;
+}
+
+#header{
+	padding: 1% 1% 1%;
+}
+#header button{
+	background-color: #ff77bb;
+	font-size: 18px;
+	padding: 0.1% 0.5% 0.1%;
+	border-radius: 10%;
+	margin: 0% 0.2% 0%;
+}
+#main{
+	padding: 1% 1% 1%;
+	text-align: center;
+}
+#main form {
+	margin: 1% 0% 1%;
+	
+}
+#main form input{
+	margin: 1% 1% 1%;
+	font-size: 18px;
+}
+#main button{
+	background-color: #ff77bb;
+	font-size: 18px;
+	padding: 0.1% 0.5% 0.1%;
+	margin: 0% 0.2% 0%;
+	border-radius: 10%;
+}
+#main table{
+	text-align: center;
+    width: auto;
+    margin: 1% auto 1%;
+}
+
+#main table  tr th{
+	padding: 10px 20px 10px;
+	font-size: 18px;
+	
+}
+#main table tbody tr td{
+	font-size: 18px;
+	
+}
+#main ol{
+	margin-top:1%;
+}
+#main ol li{
+	margin:2% 0% 1%;
+}
+#main ol li h4{
+	margin-top:1%;
+	margin-bottom: 1%;
+}
+
+
+#footer{
+	padding: 1% 1% 1%;
 }

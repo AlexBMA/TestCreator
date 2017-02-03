@@ -36,9 +36,9 @@
 				  {	
 				%>
 				<li>
-					<label><%=q.getQuestionText() %></label>
-					<h4><%=q.getNumberOfAnswers() %></h4>
-					<h4><%=q.getNumberOfCorrectAnswers() %></h4>
+					<h3><%=q.getQuestionText() %></h3>
+					<h4>Number of answers: <%=q.getNumberOfAnswers() %></h4>
+					<h4>Number of correct answers: <%=q.getNumberOfCorrectAnswers() %></h4>
 					
 					<form action="" method="get">
 						<input type="number" readonly hidden value="<%=q.getId()%>" />

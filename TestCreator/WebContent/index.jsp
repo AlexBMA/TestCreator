@@ -17,11 +17,13 @@
 		</header>
 		<br/>
 		<main id="main">
+			
+			<h2>Log in please</h2>
 		
 			<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 		
-			<input type="text" placeholder="nume utilizator" name="user">
-			<input type="password" placeholder="parola" name="pass">
+			<input type="text" placeholder="username" name="user">
+			<input type="password" placeholder="password" name="pass">
 			
 			<br/>
 			<button type="submit">Log in</button>

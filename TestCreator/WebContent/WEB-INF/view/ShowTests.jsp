@@ -35,15 +35,15 @@
 		<h2>All test available </h2>
 		
 		<table>
-			<thead>
+			
 				<tr>
 					<th>Name test</th>
 					<th>Author test</th>
 					<th>Questions</th>
 					<th>Options</th>
 				</tr>
-			</thead>
-			<tbody>
+			
+			
 				<%	
 					List<Test> testList = (List)request.getAttribute("testlist");
 					
@@ -67,7 +67,7 @@
 								{
 							%>
 							<form action="${pageContext.request.contextPath}/EditTestServlet" method="post"> 
-							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>s
+							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>
 							<button type="submit">Edit Test</button> 
 							</form>	
 							
@@ -85,7 +85,7 @@
 				
 				
 				
-			</tbody>
+			
 		
 		</table>
 		</main>

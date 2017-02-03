@@ -37,27 +37,27 @@
 				%>
 				<li>
 					
-					<label><%=q.getQuestionText() %></label>
-					<h4><%=q.getNumberOfAnswers() %></h4>
-					<h4><%=q.getNumberOfCorrectAnswers() %></h4>
+					<h3><%=q.getQuestionText() %></h3>
+					<h4>Number of answers: <%=q.getNumberOfAnswers() %></h4>
+					<h4>Number of correct answers: <%=q.getNumberOfCorrectAnswers() %></h4>
 					
-					<ul>
+					
 						<%
 							List<Answer> listAnswers = q.getListAnswersi();
 						for(Answer a:listAnswers)
 							{
 							%>
 						 
-							<li>
+							 
 								<label><%=a.getAnswerText() %></label>
-								<label><%=a.getTrueFalse() %></label>
-								
-							</li>
+								<label><% if(a.getTrueFalse()==1) out.print("<ins>correct</ins>"); else out.print("false"); %></label>
+							
+							
 									
 						<%
 							}
 						%>
-					</ul>
+					
 				</li>
 				<%} %>
 			</ol>

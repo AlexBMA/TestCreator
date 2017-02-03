@@ -66,7 +66,7 @@
 							<%if(userId==temp.getUserId()) 
 								{
 							%>
-							<form action="${pageContext.request.contextPath}/" method="post"> 
+							<form action="${pageContext.request.contextPath}/EditTestServlet" method="post"> 
 							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>s
 							<button type="submit">Edit Test</button> 
 							</form>	

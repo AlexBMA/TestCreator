@@ -28,8 +28,7 @@ public class DBTableAnswer implements DBOperation<Answer>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 	}
 
@@ -54,8 +53,7 @@ public class DBTableAnswer implements DBOperation<Answer>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 		return answerList;
 	}
@@ -73,8 +71,7 @@ public class DBTableAnswer implements DBOperation<Answer>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 	}
 

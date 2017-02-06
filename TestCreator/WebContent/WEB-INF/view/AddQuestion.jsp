@@ -64,11 +64,7 @@
 			<button type="submit">Finalize test</button>
 		
 		</form>
-		<form action="${pageContext.request.contextPath}/" method="post">
 		
-			<button type="submit">Go back to edit test</button>
-		
-		</form>
 		
 		<br/>		
 	</main>

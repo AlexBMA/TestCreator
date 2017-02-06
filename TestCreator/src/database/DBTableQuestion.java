@@ -29,8 +29,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 				// commits the transaction
 				theSession.getTransaction().commit();
 				
-				//close the session
-				theSession.close();
+			
 		
 	}
 
@@ -47,8 +46,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 		return question;
 	}
@@ -69,8 +67,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 				// commits the transaction
 				theSession.getTransaction().commit();
 				
-				//close the session
-				theSession.close();
+				
 				
 				return questionList;
 	}
@@ -89,8 +86,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 	}
 
@@ -128,8 +124,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 		return questionList;
 	}

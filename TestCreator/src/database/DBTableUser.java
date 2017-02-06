@@ -28,7 +28,7 @@ public class DBTableUser implements DBOperation<User> {
 		
 		theSession.getTransaction().commit();
 		
-		theSession.close();
+		
 		
 		return user;
 	}
@@ -69,7 +69,7 @@ public class DBTableUser implements DBOperation<User> {
 		
 		theSession.getTransaction().commit();
 		
-		theSession.close();
+		
 		
 		if(listUser.size()==1)
 		{

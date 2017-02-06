@@ -26,8 +26,7 @@ public class DBTableTest implements DBOperation<Test>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 	}
 
@@ -44,8 +43,7 @@ public class DBTableTest implements DBOperation<Test>{
 				// commits the transaction
 				theSession.getTransaction().commit();
 				
-				//close the session
-				theSession.close();
+				
 				
 				return test;
 	}
@@ -67,8 +65,7 @@ public class DBTableTest implements DBOperation<Test>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 		
 		return testList;
 	}
@@ -88,8 +85,7 @@ public class DBTableTest implements DBOperation<Test>{
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
-		//close the session
-		theSession.close();
+		
 	}
 
 	@Override

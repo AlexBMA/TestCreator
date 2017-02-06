@@ -36,8 +36,16 @@ public class EditTestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int testId;
 		
-		int testId = Integer.parseInt(request.getParameter("testid").trim());
+		try{
+			testId = Integer.parseInt(request.getParameter("testid").trim());
+		}
+		catch(NullPointerException e)
+		{
+			testId =(int) request.getAttribute("testId");
+		}
+		
 		
 		BasicService<Test> testService = new TestService();
 		

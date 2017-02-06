@@ -83,11 +83,6 @@ public class TestService implements BasicService<Test>  {
 		
 		testOpearions.insert(factory, item);
 		
-		
-		
-		
-				
-		
 	}
 
 	@Override

@@ -50,7 +50,7 @@
 			<input type="number" min="2" name="numarVariante">
 			<br/>
 			<label>number of correct answers min 1</label>
-			<input type="number"  name="numarVarianteCorecte" min="1">
+			<input type="number"  name="numarVarianteCorecte" min="1" >
 			<br/>
 			
 			<button type="submit">Add question</button>
@@ -60,10 +60,13 @@
 		</form>
 		<br/>
 		<form action="${pageContext.request.contextPath}/FinalizeazaTest" method="post">
-			
-			
-			
+				
 			<button type="submit">Finalize test</button>
+		
+		</form>
+		<form action="${pageContext.request.contextPath}/" method="post">
+		
+			<button type="submit">Go back to edit test</button>
 		
 		</form>
 		

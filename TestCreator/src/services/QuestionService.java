@@ -70,9 +70,7 @@ public class QuestionService implements BasicService<Question>{
 			answerService.createItem(factory, a);
 		}
 		
-		
 		questionOpearions.insert(factory, item);
-		
 		
 	}
 

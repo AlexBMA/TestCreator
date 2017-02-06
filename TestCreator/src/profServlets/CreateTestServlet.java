@@ -55,6 +55,7 @@ public class CreateTestServlet extends HttpServlet {
 		HttpSession theSession = request.getSession(false);
 		
 		theSession.setAttribute("test", theTest);
+		theSession.setAttribute("state","new");
 		
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();

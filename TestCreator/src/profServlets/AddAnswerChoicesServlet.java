@@ -71,9 +71,12 @@ public class AddAnswerChoicesServlet extends HttpServlet {
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		final String  NEXT_PAGE_NAME = "AddQuestion";
 		
+		
+		String  NEXT_PAGE_NAME = "AddQuestion";
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
+		
+		 
 		
 				
 		RequestDispatcher  requestDispacher = request.getRequestDispatcher(path);

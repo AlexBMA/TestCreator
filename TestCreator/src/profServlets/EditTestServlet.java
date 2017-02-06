@@ -35,6 +35,8 @@ public class EditTestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
 		BasicService<Test> testService = new TestService();
@@ -46,8 +48,12 @@ public class EditTestServlet extends HttpServlet {
 		final String NEXT_PAGE_NAME="EditTest";
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
+		String state="edit";
+		
+		
 		request.setAttribute("test", test);
 		request.getSession(false).setAttribute("test", test);
+		request.getSession(false).setAttribute("state",state);
 		
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);	
 		reqDispacher.forward(request, response);

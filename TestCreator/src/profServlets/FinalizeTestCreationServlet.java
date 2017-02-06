@@ -65,6 +65,15 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		
 		NEXT_PAGE_NAME =pathCreator.createPath(NEXT_PAGE_NAME);
 		
+		String state = (String) request.getSession(false).getAttribute("state");
+
+		if( state.equals("edit"))
+		{
+			  NEXT_PAGE_NAME = "EditTestServlet";	
+			 
+		}
+		
+		
 		System.out.println(NEXT_PAGE_NAME);
 				
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(NEXT_PAGE_NAME);

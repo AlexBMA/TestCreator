@@ -1,8 +1,6 @@
 package profServlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,13 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
-import model.Answer;
-import model.Question;
 import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionService;
 import services.TestService;
 
 /**

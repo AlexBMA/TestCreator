@@ -43,8 +43,18 @@ public class QuestionService implements BasicService<Question>{
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
 		
+		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		
+		Question item = questionOpearions.getARow(factory, id);
+		
+		List<Answer> listAnswer = item.getListAnswersi();
+		BasicService<Answer>answerService = new AnswerService();
+		
+		for(Answer a:listAnswer)
+		{
+			answerService.deleteItem(factory, a.getId());
+		}
 	}
 
 	@Override

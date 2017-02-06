@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 
 import database.DBOperation;
+import database.DBTableQuestion;
 import database.DBTableTest;
 import model.Question;
 import model.Test;
@@ -45,14 +46,26 @@ public class TestService implements BasicService<Test>  {
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
+		DBOperation<Test> testOpearions = new DBTableTest();
 		
+		BasicService<Question> questionService = new QuestionService();
+		
+		Test test = testOpearions.getARow(factory, id);
+		List<Question> questionList = questionService.getSimilarItems(factory, test.getId());
+		
+		for(Question q:questionList)
+		{
+			questionService.deleteItem(factory, q.getId());
+		}
+		
+		
+		testOpearions.deleteRow(factory, id);
 	}
 
 
 	@Override
 	public void editItem(SessionFactory factory) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 

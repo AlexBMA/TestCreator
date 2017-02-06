@@ -15,11 +15,10 @@ import javax.servlet.http.HttpSession;
 import model.Answer;
 import model.Question;
 import model.Test;
-import services.AnswerService;
-import services.BasicService;
+
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionService;
+
 
 /**
  * Servlet implementation class AdaugaVarianteDeRaspuns
@@ -83,9 +82,7 @@ public class AddAnswerChoicesServlet extends HttpServlet {
 	}
 	
 	protected List<Answer> createAnswerList(HttpServletRequest request, int numberOfCorrectAnswers,int numberOfIncorrectAnswers)
-	{
-		
-		
+	{	
 		List<Answer> listAnswers = new ArrayList<>();
 		
 		Answer answer;
@@ -95,8 +92,7 @@ public class AddAnswerChoicesServlet extends HttpServlet {
 		{
 			answerText = request.getParameter("textRaspunsC"+i).trim();	
 			answer = new Answer(answerText , 1);
-			listAnswers.add(answer);
-			
+			listAnswers.add(answer);		
 		}
 		
 		for(int i=0;i<numberOfIncorrectAnswers;i++)

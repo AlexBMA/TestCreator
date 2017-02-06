@@ -17,7 +17,10 @@
 			<nav>
 				<ul>
 					<li>
-						Creaza test
+						<form action="${pageContext.request.contextPath}/MakeNewTestServlet" method="get">
+	
+							<button type="submit">Create test</button>
+						</form>
 					</li>
 					<li>
 						<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
@@ -71,7 +74,7 @@
 							<button type="submit">Edit Test</button> 
 							</form>	
 							
-							<form action="${pageContext.request.contextPath}/" method="post">
+							<form action="${pageContext.request.contextPath}/DeleteTestServlet" method="post">
 							<input type="number" readonly hidden value="<%=temp.getId() %>" name="testid"/>
 							<button type="submit">Delete Test</button>
 							</form>

@@ -2,7 +2,6 @@ package profServlets;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +16,6 @@ import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
 import services.TestService;
-import xmlpack.XMLXervices;
 
 /**
  * Servlet implementation class VizualizeazaTeste
@@ -43,7 +41,6 @@ public class ShowTests extends HttpServlet {
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-	
 		
 		BasicService<Test> testService = new TestService();
 		

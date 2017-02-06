@@ -118,7 +118,7 @@ public class DBTableQuestion implements DBOperation<Question> {
 		String hql="from Question";
 		//theSession.createQuery(hql).getResultList()
 		
-		String nativeQuery ="SELECT question.id,question.number_of_answers,question.question_text,number_of_correct_answers"
+		String nativeQuery ="SELECT DISTINCT question.id,question.number_of_answers,question.question_text,number_of_correct_answers"
 				+ " FROM question,test_question,test where test_question.test_id =" +idType+ " and "
 				+"question.id = test_question.question_id";
 		

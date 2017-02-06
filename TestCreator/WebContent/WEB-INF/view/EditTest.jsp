@@ -40,11 +40,11 @@
 					<h4>Number of answers: <%=q.getNumberOfAnswers() %></h4>
 					<h4>Number of correct answers: <%=q.getNumberOfCorrectAnswers() %></h4>
 					
-					<form action="" method="get">
+					<form action="${pageContext.request.contextPath}" method="get">
 						<input type="number" readonly hidden value="<%=q.getId()%>" />
 						<button type="submit">Edit question</button>
 					</form>
-					<form action="" method="get">
+					<form action="${pageContext.request.contextPath}" method="get">
 						<input type="number" readonly hidden value="<%=q.getId()%>"/>
 						<button type="submit">Delete question</button>
 					</form>
@@ -52,7 +52,7 @@
 				
 				<%} %>
 			</ol>
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath}/AdaugaIntrebareServlet" method="post">
 				<button type="submit">Add question</button>
 			</form>
 			

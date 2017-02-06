@@ -41,7 +41,6 @@ public class EditTestServlet extends HttpServlet {
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		
-		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
 		final String NEXT_PAGE_NAME="EditTest";

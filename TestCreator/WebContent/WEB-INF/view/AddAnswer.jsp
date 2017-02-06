@@ -17,6 +17,10 @@
 				<button type="submit">Log out</button>
 			</form>
 			
+			<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
+				<button type="submit">View tests</button>
+			</form>
+			
 		</header>
 		<br/>
 		<main id="main">
@@ -27,27 +31,22 @@
 		<h3> Name test: <%=temp.getTestName() %></h3>
 		
 		<h4> Name creator:  <%=temp.getCreatorName() %></h4>
-		<h4> Number of questions: <%=temp.getListQuestions().size() %></h4>
-		
-		<h4> Numar intreabare curenta: </h4>
-		
-		<h5>Question:  </h5>
-		<p>
+				
+		<h4>Question:  
 			<%=request.getAttribute("textIntrebare").toString() %>
-		</p>
-		
+		</h4>
 		<form action="${pageContext.request.contextPath}/AdaugaVarianteDeRaspuns" method="post" id="adaugaRaspuns">
 			
 			<input type="text" value="<%=request.getAttribute("textIntrebare").toString() %>" readonly name="textIntreabare">
 			
-			<h5>Raspunsuri/raspunsuri corecte: </h5>
+			<h5>Correct answer/answers: </h5>
 			<% int size = Integer.parseInt(request.getAttribute("numarVarianteCorecte").toString());
 			   int size2 = Integer.parseInt(request.getAttribute("numarVariante").toString()) - size;
 			   
 			
 				for(int i=0;i<size;i++)
 				{%>
-					<h4>Varianta raspuns corecta </h4>
+					<h4>Correct choice </h4>
 			 		<textarea rows="4" cols="30" name="textRaspunsC<%=i%>"  form="adaugaRaspuns">
                 		</textarea>
 					<br/>
@@ -57,13 +56,13 @@
 			<input type="number" value="<%=size %>" name="numarVarianteCorecte" readonly>
 			
 			<br/>
-			<h5>Raspunsuri/raspunsuri incorecte: </h5>
+			<h5>Incorrect answer/answers: </h5>
 			
 			<%
 				for(int i=0;i<size2;i++)
 				{%>
 				
-				<h4>Varianta raspuns incorecta </h4>
+				<h4>Incorrect choice </h4>
 		 		<textarea rows="4" cols="30" name="textRaspunsI<%=i%>"  form="adaugaRaspuns">
             		</textarea>
 				<br/>
@@ -76,8 +75,8 @@
 			
 			<br/>
 			
-			<button  type="submit">Adauga raspunsurile </button>
-			<button  type="reset">Reseteaza campurile</button>
+			<button  type="submit">Add answers </button>
+			<button  type="reset">Reset fields</button>
 		</form>
 		
 		</main>

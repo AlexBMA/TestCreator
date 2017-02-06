@@ -18,6 +18,11 @@
 	
 			<button type="submit">Log out</button>
 		</form>
+		
+		<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
+	
+				<button type="submit">View tests</button>
+		</form>
 	
 	</header>
 	<br/>
@@ -31,7 +36,6 @@
 		<h4> Name creator:  <%=temp.getCreatorName() %></h4>
 		<h4> Number of questions: <%=temp.getListQuestions().size() %></h4>
 			
-		<h4><%=request.getAttribute("") %></h4>
 			
 		<br/>	
 		<form action="${pageContext.request.contextPath}/AdaugaTextIntrebareSiNrRaspunsi" method="post" id="adaugaIntrebare">

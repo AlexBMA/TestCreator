@@ -29,8 +29,9 @@ public class AnswerService implements BasicService<Answer> {
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		// TODO Auto-generated method stub
 		
+		DBOperation<Answer>answerOpearions = new DBTableAnswer();
+		answerOpearions.deleteRow(factory, id);
 	}
 
 

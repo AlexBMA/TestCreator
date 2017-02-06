@@ -29,7 +29,7 @@
 		<form action="${pageContext.request.contextPath}/" method="get">
 			
 			
-			<button>Vizualizeaza intrebari existente</button>
+			<button>View exiting questions</button>
 			
 		</form>
 		<br/>

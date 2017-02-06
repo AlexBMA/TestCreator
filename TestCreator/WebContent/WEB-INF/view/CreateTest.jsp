@@ -13,6 +13,11 @@
 		
 		<header id="header">
 			
+			<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
+	
+				<button type="submit">View tests</button>
+			</form>
+			
 			<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
 	
 				<button type="submit">Log out</button>

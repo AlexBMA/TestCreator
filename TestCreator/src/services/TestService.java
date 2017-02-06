@@ -7,9 +7,9 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 
 
-import database.DBOperation;
-import database.DBTableQuestion;
-import database.DBTableTest;
+import database.DAOOperations;
+import database.QuestionDAO;
+import database.TestDAO;
 import model.Question;
 import model.Test;
 
@@ -19,7 +19,7 @@ public class TestService implements BasicService<Test>  {
 	@Override
 	public Test getItem(SessionFactory factory, int id) {
 		
-		DBOperation<Test> testOpearions = new DBTableTest();
+		DAOOperations<Test> testOpearions = new TestDAO();
 		BasicService<Question> questionService = new QuestionService();
 		
 	
@@ -35,7 +35,7 @@ public class TestService implements BasicService<Test>  {
 	@Override
 	public List<Test> getAllItems(SessionFactory factory) {
 		
-		DBOperation<Test> testOpearions = new DBTableTest();
+		DAOOperations<Test> testOpearions = new TestDAO();
 		
 		List<Test> testList = testOpearions.getAllRow(factory);
 		
@@ -46,7 +46,7 @@ public class TestService implements BasicService<Test>  {
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		DBOperation<Test> testOpearions = new DBTableTest();
+		DAOOperations<Test> testOpearions = new TestDAO();
 		
 		BasicService<Question> questionService = new QuestionService();
 		
@@ -72,7 +72,7 @@ public class TestService implements BasicService<Test>  {
 	@Override
 	public void createItem(SessionFactory factory, Test item) {
 		
-		DBOperation<Test> testOpearions = new DBTableTest();
+		DAOOperations<Test> testOpearions = new TestDAO();
 
 		List<Question> listQuestion = item.getListQuestions();
 		BasicService<Question> questionService = new QuestionService();

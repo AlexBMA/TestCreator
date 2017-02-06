@@ -1,18 +1,20 @@
 package database;
 
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
-
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import model.Test;
+import model.Answer;
+import model.Question;
 
-public class DBTableTest implements DBOperation<Test>{
+public class AnswerDAO implements DAOOperations<Answer>{
 
 	@Override
-	public void insert(SessionFactory theSessionFactory, Test ob) {
+	public void insert(SessionFactory theSessionFactory, Answer ob) {
 		
 		// get the session
 		Session theSession = theSessionFactory.getCurrentSession();
@@ -31,69 +33,53 @@ public class DBTableTest implements DBOperation<Test>{
 	}
 
 	@Override
-	public Test getARow(SessionFactory theSessionFactory, int id) {
-			   // get the session
-				Session theSession = theSessionFactory.getCurrentSession();
-				
-				//begins the transaction
-				theSession.getTransaction().begin();
-				
-				Test test = theSession.get(Test.class, id);
-					
-				// commits the transaction
-				theSession.getTransaction().commit();
-				
-				
-				
-				return test;
+	public Answer getARow(SessionFactory theSessionFactory, int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Test> getAllRow(SessionFactory theSessionFactory) {
-		
-		// get the session
+	public List<Answer> getAllRow(SessionFactory theSessionFactory) {
+		 // get the session
 		Session theSession = theSessionFactory.getCurrentSession();
 		
 		//begins the transaction
 		theSession.getTransaction().begin();
 		
-	
-		String hql="from Test";
+		String hql="from Answer";
 		
-		List<Test> testList= theSession.createQuery(hql).getResultList();
+		List<Answer> answerList= theSession.createQuery(hql).getResultList();
 			
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
 		
 		
-		return testList;
+		return answerList;
 	}
 
 	@Override
 	public void deleteRow(SessionFactory theSessionFactory, int id) {
-		
-		   // get the session
-		Session theSession = theSessionFactory.getCurrentSession();
+	Session theSession = theSessionFactory.getCurrentSession();
 		
 		//begins the transaction
 		theSession.getTransaction().begin();
 		
-		Test test = theSession.get(Test.class, id);
-		theSession.delete(test);
+		Answer answer = theSession.get(Answer.class, id);
+		theSession.delete(answer);
 			
 		// commits the transaction
 		theSession.getTransaction().commit();
 		
 		
+		
 	}
 
 	@Override
-	public List<Test> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
+	public List<Answer> getAllSimilarRows(SessionFactory theSessionFactory, int idType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	
 	
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-import database.DBOperation;
-import database.DBTableQuestion;
+import database.DAOOperations;
+import database.QuestionDAO;
 
 import model.Answer;
 import model.Question;
@@ -17,7 +17,7 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public Question getItem(SessionFactory factory, int id) {
 		
-		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		DAOOperations<Question> questionOpearions = new QuestionDAO();
 		
 		//BasicService<Answer> answerService = new AnswerService();
 		
@@ -44,7 +44,7 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
 		
-		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		DAOOperations<Question> questionOpearions = new QuestionDAO();
 		
 		Question item = questionOpearions.getARow(factory, id);
 		
@@ -60,7 +60,7 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public void createItem(SessionFactory factory, Question item) {
 		
-		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		DAOOperations<Question> questionOpearions = new QuestionDAO();
 		
 		List<Answer> listAnswer = item.getListAnswersi();
 		BasicService<Answer>answerService = new AnswerService();
@@ -77,7 +77,7 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public List<Question> getSimilarItems(SessionFactory factory, int idSimilar) {
 		
-		DBOperation<Question> questionOpearions = new DBTableQuestion();
+		DAOOperations<Question> questionOpearions = new QuestionDAO();
 		List<Question> questionList = questionOpearions.getAllSimilarRows(factory, idSimilar);
 		
 		return questionList;

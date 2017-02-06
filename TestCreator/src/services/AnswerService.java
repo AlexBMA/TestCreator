@@ -3,8 +3,8 @@ package services;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
-import database.DBOperation;
-import database.DBTableAnswer;
+import database.DAOOperations;
+import database.AnswerDAO;
 import model.Answer;
 
 
@@ -13,7 +13,7 @@ public class AnswerService implements BasicService<Answer> {
 	@Override
 	public Answer getItem(SessionFactory factory, int id) {
 
-		DBOperation<Answer>answerOpearions = new DBTableAnswer();
+		DAOOperations<Answer>answerOpearions = new AnswerDAO();
 		
 		return answerOpearions.getARow(factory, id);
 		
@@ -30,7 +30,7 @@ public class AnswerService implements BasicService<Answer> {
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
 		
-		DBOperation<Answer>answerOpearions = new DBTableAnswer();
+		DAOOperations<Answer>answerOpearions = new AnswerDAO();
 		answerOpearions.deleteRow(factory, id);
 	}
 
@@ -44,7 +44,7 @@ public class AnswerService implements BasicService<Answer> {
 	@Override
 	public void createItem(SessionFactory factory, Answer item) {
 		
-			DBOperation<Answer>answerOpearions = new DBTableAnswer();
+			DAOOperations<Answer>answerOpearions = new AnswerDAO();
 			answerOpearions.insert(factory, item);
 		
 	}

@@ -58,6 +58,9 @@ ol li{
 	margin: 1% 1% 1%;
 	font-size: 18px;
 }
+#main form textarea{
+	font-size: 18px;
+}
 #main button{
 	background-color: #ff77bb;
 	font-size: 18px;

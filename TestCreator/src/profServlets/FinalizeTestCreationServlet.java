@@ -57,6 +57,9 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		test.setNumberOfQuestions(test.getListQuestions().size());
 		test.setUserId(user.getId());
 		
+		DB.closeFactory();
+		DB.DBConnect();
+		
 		testService.createItem(DB.getSessionFactory(), test);
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();

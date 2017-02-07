@@ -13,7 +13,18 @@
 		
 	<div id="container">
 	
-			<header id="header">
+		<header id="header">
+			
+		<form action="${pageContext.request.contextPath}/MakeNewTestServlet" method="get">
+		
+			<button type="submit">Make new test</button>
+		</form>
+		
+	
+		<form action="${pageContext.request.contextPath}/VizualizeazaTeste" method="get">
+	
+			<button type="submit">View tests</button>
+		</form>	
 		
 		<form action="${pageContext.request.contextPath}/LogOutServlet" method="get">
 	
@@ -40,12 +51,14 @@
 					<h4>Number of answers: <%=q.getNumberOfAnswers() %></h4>
 					<h4>Number of correct answers: <%=q.getNumberOfCorrectAnswers() %></h4>
 					
-					<form action="${pageContext.request.contextPath}" method="get">
-						<input type="number" readonly hidden value="<%=q.getId()%>" />
+					<form action="${pageContext.request.contextPath}/" method="get">
+						<input type="number" readonly hidden value="<%=test.getId()%>" name="testid"/>
+						<input type="number" readonly hidden value="<%=q.getId()%>" name="questionid"/>
 						<button type="submit">Edit question</button>
 					</form>
-					<form action="${pageContext.request.contextPath}" method="get">
-						<input type="number" readonly hidden value="<%=q.getId()%>"/>
+					<form action="${pageContext.request.contextPath}/" method="post">
+						<input type="number" readonly hidden value="<%=test.getId()%>" name="testid"/>
+						<input type="number" readonly hidden value="<%=q.getId()%>" name="questionid"/>
 						<button type="submit">Delete question</button>
 					</form>
 				</li>

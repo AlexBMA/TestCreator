@@ -43,7 +43,7 @@ public class EditTestServlet extends HttpServlet {
 		}
 		catch(NullPointerException e)
 		{
-			testId =(int) request.getAttribute("testId");
+			testId =(int) request.getAttribute("testid");
 		}
 		
 		

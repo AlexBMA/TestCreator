@@ -44,6 +44,7 @@ ol li{
 	padding: 0.1% 0.5% 0.1%;
 	border-radius: 10%;
 	margin: 0% 0.2% 0%;
+	float: left;
 }
 #main{
 	padding: 1% 1% 1%;

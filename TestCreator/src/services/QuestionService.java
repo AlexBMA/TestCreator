@@ -55,6 +55,8 @@ public class QuestionService implements BasicService<Question>{
 		{
 			answerService.deleteItem(factory, a.getId());
 		}
+		
+		questionOpearions.deleteRow(factory, id);
 	}
 
 	@Override

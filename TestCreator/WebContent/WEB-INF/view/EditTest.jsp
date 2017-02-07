@@ -56,7 +56,7 @@
 						<input type="number" readonly hidden value="<%=q.getId()%>" name="questionid"/>
 						<button type="submit">Edit question</button>
 					</form>
-					<form action="${pageContext.request.contextPath}/" method="post">
+					<form action="${pageContext.request.contextPath}/DeleteQuestionServlet" method="post">
 						<input type="number" readonly hidden value="<%=test.getId()%>" name="testid"/>
 						<input type="number" readonly hidden value="<%=q.getId()%>" name="questionid"/>
 						<button type="submit">Delete question</button>

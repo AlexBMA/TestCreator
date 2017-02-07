@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
 import model.Question;
-import oracle.net.aso.q;
+import model.Test;
 import services.BasicService;
 import services.QuestionService;
+import services.TestService;
 
 /**
  * Servlet implementation class DeleteQuestionServlet
@@ -48,6 +49,7 @@ public class DeleteQuestionServlet extends HttpServlet {
 		
 		BasicService<Question> questionService = new QuestionService();
 		questionService.deleteItem(DB.getSessionFactory(), questionId);
+		
 		
 		
 		request.setAttribute("testid",  testId);

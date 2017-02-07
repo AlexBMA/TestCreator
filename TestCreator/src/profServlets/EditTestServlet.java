@@ -50,6 +50,12 @@ public class EditTestServlet extends HttpServlet {
 		BasicService<Test> testService = new TestService();
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
+		test.setNumberOfQuestions(test.getListQuestions().size());
+		
+		DB.getSessionFactory().close();
+		DB.DBConnect();
+		
+		testService.createItem(DB.getSessionFactory(), test);
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
@@ -57,6 +63,7 @@ public class EditTestServlet extends HttpServlet {
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
 		String state="edit";
+		
 		
 		
 		request.setAttribute("test", test);

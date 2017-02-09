@@ -59,8 +59,8 @@
 			<%} %>	
 			<br/>
 			
-			
 			<%}%>
+				<input type="number" value="<%=question.getNumberOfAnswers() %>" readonly hidden name="nrofanswers">
 				<button type="submit">Save modifications</button>
 				<button type="reset">Reset Fields</button>
 			</form>

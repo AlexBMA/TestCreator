@@ -33,6 +33,7 @@
 		<br/>
 		<main id="main">
 			<%Question question = (Question)request.getAttribute("question"); 	
+				int testId = (int)request.getAttribute("testId");
 			%>
 			<form action="${pageContext.request.contextPath}/SaveEidtQuestionServlet" method="post" id="editquestion">
 			<h2>Question text:</h2>
@@ -47,6 +48,7 @@
 					Answer answer = listAnswers.get(i);
 			%>
 			<label>Answer <%=i+1%>:</label>
+			<input type="number" value="<%=answer.getId()%>" name="answerid<%=i+1%>" hidden readonly>
 			<input type="text" value="<%=answer.getAnswerText()%>"name="answertext<%=i+1%>">
 			<%if(answer.getTrueFalse()==1){ %>
 				<input type="radio" value="1" name="answer<%=i+1%>" checked>True
@@ -62,6 +64,7 @@
 			<%}%>
 				<input type="number" value="<%=question.getNumberOfAnswers() %>" readonly hidden name="nrofanswers">
 				<input type="number" value="<%=question.getId() %>" readonly hidden name="questionid">
+				<input type="number" value="<%=testId %>" readonly hidden name="testid">
 				<button type="submit">Save modifications</button>
 				<button type="reset">Reset Fields</button>
 			</form>

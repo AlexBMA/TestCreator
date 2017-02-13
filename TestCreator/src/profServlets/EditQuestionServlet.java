@@ -45,7 +45,9 @@ public class EditQuestionServlet extends HttpServlet {
 		
 		PathCreatorPrefixAndSufix pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
+		
 		request.setAttribute("question", question);
+		request.setAttribute("testId", testId);
 		
 		String NEXT_PAGE ="EditQuestion";
 		String path=pathCreator.createPath(NEXT_PAGE);

@@ -47,6 +47,7 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		String textQuestion = request.getParameter("textIntrebare").trim();
 		int nrOfTotalAnswers = Integer.parseInt(request.getParameter("nrofanswers").trim());
 		int questionId = Integer.parseInt(request.getParameter("questionid").trim());
+		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
 		List<Answer> listAnswers = new ArrayList<>();
 		
@@ -54,13 +55,16 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		String textAnswer;
 		int trueFalse;
 		int nrOfCorrectAnswers = 0;
+		int answerId;
 		
 		
 		for(int i=1;i<=nrOfTotalAnswers;i++)
 		{
 			textAnswer = request.getParameter("answertext"+i).trim();
 			trueFalse = Integer.parseInt(request.getParameter("answer"+i));
+			answerId = Integer.parseInt(request.getParameter("answerid"+i).trim());
 			temp = new Answer(textAnswer,trueFalse);
+			temp.setId(answerId);
 			
 			if(trueFalse == 1) nrOfCorrectAnswers++;
 				
@@ -78,11 +82,14 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		BasicService<Question> questionService = new QuestionService();
 		questionService.createItem(DB.getSessionFactory(), question);
 		
+		String NEXT_PAGE ="EditTestServlet";
 		
-		System.out.println("Edit succes");
+		//System.out.println("Edit succes");
 		
-		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
-		//requestDispatcher.forward(request, response);
+		request.setAttribute("testid", testId);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(NEXT_PAGE);
+		requestDispatcher.forward(request, response);
 		
 	}
 

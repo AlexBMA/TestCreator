@@ -42,14 +42,14 @@ public class TakeTestServlet extends HttpServlet {
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		
-		
+		int indexOfCurrentQuestion = 0;
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
 		final String NEXT_PAGE_NAME="TakeTest";
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
-		request.setAttribute("test", test);
-		request.setAttribute("currentquestion", 0);
+		
+		request.setAttribute("currentquestion", indexOfCurrentQuestion);
 		HttpSession theSession = request.getSession(false);
 		theSession.setAttribute("test", test);
 		

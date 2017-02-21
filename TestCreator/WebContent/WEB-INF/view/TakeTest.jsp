@@ -33,45 +33,58 @@
 		<br/>
 		<main id="main">
 			<%
-				Test currentTest = (Test)request.getAttribute("test");
+				
+				Test currentTest = (Test)session.getAttribute("test");
 				int numberOfQuestions = currentTest.getNumberOfQuestions();
 				List<Question> questonList = currentTest.getListQuestions();
 				int index = (int)request.getAttribute("currentquestion");
 				Question currentQuestion= questonList.get(index);
 			%>
-			<aside>
+			
 			
 				<ul>
-				<% for(int i=1;i<=numberOfQuestions;i++){
+				<% for(int i=0;i<numberOfQuestions;i++){
 				%>
 					<li>
-						<form action="${pageContext.request.contextPath}" method="post">
-							<input type="number" value="<%=currentQuestion.getId() %>" hidden readonly name="questionid"/>
-							<button type="submit">Question: <%=i%></button>
+						<form action="${pageContext.request.contextPath}/SwitchQuestionServlet" method="get">
+							<input type="number" value="<%=questonList.get(i).getId() %>" hidden readonly name="questionid"/>
+							<button type="submit">Question: <%=i+1%></button>
 						</form>
 					</li>
 					<%}%>
 				</ul>
-			</aside>
+			
 			
 			<form action="${pageContext.request.contextPath}" method="get">
-				<h4>Question text:<%=currentQuestion.getQuestionText() %> </h4>	
+				<h4>Question:<%=currentQuestion.getQuestionText() %> </h4>	
 				<%	
 					List<Answer> listAnswer = currentQuestion.getListAnswersi();
 					int numberOfanswers = currentQuestion.getNumberOfAnswers();
 					int numberOfCorrectAnswers = currentQuestion.getNumberOfCorrectAnswers();
-					for(int i=0;i<=numberOfanswers;i++)	
+					for(int i=0;i<numberOfanswers;i++)	
 					{
-				%>
-				
+					  String textAnswer = listAnswer.get(i).getAnswerText();
+					  if(numberOfCorrectAnswers ==1)
+						{	
 					
+				%>
+						<input type="radio" value="<%=textAnswer %>" name="radioanswer<%=i%>"/><%=textAnswer %>		
+				<%
+						}
+					if(numberOfCorrectAnswers>1)
+						{
+				%>
+						<input type="checkbox" value="<%=textAnswer %>" name="checkanswer<%=i%>"/><%=textAnswer%>
 				
 				<%
-				}
+						}
+					}
 				%>
-				
+				<br/>
+				<input type="number" value="<%=index%>" hidden reandonly name="index"/>
 				<button type="submit">Next</button>
-				<button type="submit">Back</button>
+				
+				
 			</form>
 			
 		

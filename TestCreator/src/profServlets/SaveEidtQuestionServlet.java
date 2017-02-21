@@ -84,7 +84,7 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		
 		String NEXT_PAGE ="EditTestServlet";
 		
-		//System.out.println("Edit succes");
+		
 		
 		request.setAttribute("testid", testId);
 		

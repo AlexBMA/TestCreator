@@ -1,4 +1,4 @@
-package profServlets;
+package studentServlets;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,16 +18,16 @@ import services.PathCreatorPrefixAndSufixImpl;
 import services.TestService;
 
 /**
- * Servlet implementation class VizualizeazaTeste
+ * Servlet implementation class ShowTestStudentServlet
  */
-@WebServlet("/VizualizeazaTeste")
-public class ShowTests extends HttpServlet {
+@WebServlet("/ShowTestStudentServlet")
+public class ShowTestStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowTests() {
+    public ShowTestStudentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,25 +37,20 @@ public class ShowTests extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//String filePath="D:\\git\\TestCreator\\TestCreator\\fisiereXml\\Test.xml";
-		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
-		
 		
 		BasicService<Test> testService = new TestService();
 		
 		List<Test> testList = testService.getAllItems(DB.getSessionFactory());
 		
 		
-		final String  NEXT_PAGE_NAME ="ShowTests";
+		final String  NEXT_PAGE_NAME ="StudentPage";
 		String page= pathCreator.createPath(NEXT_PAGE_NAME);
 		
 		request.setAttribute("testlist", testList);
 		
 		RequestDispatcher requestDispacher = request.getRequestDispatcher(page);
 		requestDispacher.forward(request, response);
-		
-		
 	}
 
 	/**

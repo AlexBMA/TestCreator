@@ -40,8 +40,9 @@
 				int index = (int)request.getAttribute("currentquestion");
 				Question currentQuestion= questonList.get(index);
 			%>
+			<p><%=index %></p>
 			
-			
+			<!-- 
 				<ul>
 				<% for(int i=0;i<numberOfQuestions;i++){
 				%>
@@ -53,9 +54,9 @@
 					</li>
 					<%}%>
 				</ul>
+			 -->
 			
-			
-			<form action="${pageContext.request.contextPath}" method="get">
+			<form action="${pageContext.request.contextPath}/SwitchQuestionBackSerlvet" method="get">
 				<h4>Question:<%=currentQuestion.getQuestionText() %> </h4>	
 				<%	
 					List<Answer> listAnswer = currentQuestion.getListAnswersi();

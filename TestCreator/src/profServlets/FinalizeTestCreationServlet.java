@@ -73,6 +73,7 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 		if( state.equals("edit"))
 		{
 			  NEXT_PAGE_NAME = "EditTestServlet";	
+			  System.out.println(test.getId()+" $$$$$$$$$$$$$$$$");
 			 request.setAttribute("testId",test.getId()) ;
 		}
 		

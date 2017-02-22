@@ -1,6 +1,7 @@
 package profServlets;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +39,14 @@ public class EditTestServlet extends HttpServlet {
 		
 		int testId;
 		
+		
+		
 		try{
 			testId = Integer.parseInt(request.getParameter("testid").trim());
 		}
 		catch(NullPointerException e)
 		{
-			testId =(int) request.getAttribute("testid");
+			testId =(int) request.getAttribute("testId");
 		}
 		
 		

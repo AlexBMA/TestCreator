@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Answer;
 import model.Question;
 import model.Test;
+import model.TestReport;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
 
@@ -46,6 +47,8 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 		HttpSession theSession = request.getSession(false);
 		Test localTest = (Test) theSession.getAttribute("test");
 
+		//TestReport testReport = 
+
 		getAndCheckAnswer(request, currentIndex, localTest);
 
 		PathCreatorPrefixAndSufix pathCreator = new PathCreatorPrefixAndSufixImpl();
@@ -55,7 +58,8 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 
 		if (indexOfCurrentQuestion == localTest.getNumberOfQuestions()) {
 
-			indexOfCurrentQuestion = 0;
+			NEXT_PAGE_NAME = "TestScore";
+			path = pathCreator.createPath(NEXT_PAGE_NAME);
 		}
 		
 		request.setAttribute("currentquestion", indexOfCurrentQuestion);
@@ -66,7 +70,7 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 
 	public void getAndCheckAnswer(HttpServletRequest request, int currentIndex, Test localTest) {
 
-		System.out.println(localTest.getListQuestions().size());
+		
 
 		Question theQuestion = localTest.getListQuestions().get(currentIndex);
 
@@ -76,6 +80,8 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 		String checkQuestionAnswer = "checkanswer";
 
 		List<Answer> answerList = theQuestion.getListAnswersi();
+		
+		
 
 		while (attributeNames.hasMoreElements()) {
 			String name = attributeNames.nextElement();
@@ -83,15 +89,20 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 			if (name.contains(radioQuestionAnswer)) {
 
 				if (checkAnswer(request, theQuestion, answerList, 1)) {
-					System.out.println("Qestion was answerd correct");
+					System.out.println("Q radio was answerd correct");
+					
 				}
 
 			}
 			if (name.contains(checkQuestionAnswer)) {
-
+				if (checkAnswer(request, theQuestion, answerList, 2)) {
+					System.out.println("Q check  was answerd correct");
+					
+				}
 			}
 
 		}
+		
 	}
 
 	public boolean checkAnswer(HttpServletRequest request, Question theQuestion, List<Answer> answerList, int mode) {
@@ -112,7 +123,7 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 			}
 
 			if (answer.getTrueFalse() == 1 && mode == 2) {
-				if (answer.getAnswerText().equals(request.getParameter("radioanswer" + i))) {
+				if (answer.getAnswerText().equals(request.getParameter("checkanswer" + i))) {
 					answers++;
 				}
 			}

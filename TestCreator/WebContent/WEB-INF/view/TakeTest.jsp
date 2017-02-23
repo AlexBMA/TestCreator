@@ -68,7 +68,7 @@
 						{	
 					
 				%>
-						<input type="radio" value="<%=textAnswer %>" name="radioanswer<%=i%>"/><%=textAnswer %>		
+						<input type="radio" value="<%=textAnswer %>" name="radioanswer"/><%=textAnswer %>		
 				<%
 						}
 					if(numberOfCorrectAnswers>1)

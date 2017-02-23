@@ -32,10 +32,34 @@
 		<br/>
 		<main id="main">
 			<%
-				
+				TestReport testReport = (TestReport)session.getAttribute("testreport");
+				List<Item> listItems = testReport.getTestItems();
+				int size = listItems.size();
 			%>
-			<h4>Under construction</h4>
-		
+			<h2>Score: <%=testReport.getScore()%> out of <%=size %> </h2>
+			<br/>
+			<ul>
+			<%
+				for(int i=0;i<size;i++)
+				{
+					Item localItem = listItems.get(i);
+					
+			%>
+				<h3>Question: <%=localItem.getQuestionText() %></h3>
+				<h4>User answer: </h4>
+				
+					<h3><%=localItem.getAllUserAnswersInAParagraf() %></h3>
+				
+				
+				<h4>Correct answer:</h4>
+				
+					<h3><%=localItem.getAllCorectAnswerInAParagraf() %></h3>
+				
+				<br/>
+			<%
+				}
+			%>
+			</ul>
 		</main>
 		<br/>
 		<footer id="footer">

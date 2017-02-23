@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
@@ -12,6 +13,8 @@ public class Item {
 	
 	public Item() {
 		super();
+		myAnswers = new ArrayList<>();
+		correctAnswers = new ArrayList<>();
 	}
 	public String getQuestionText() {
 		return questionText;
@@ -31,7 +34,27 @@ public class Item {
 	public void setCorrectAnswers(List<String> correctAnswers) {
 		this.correctAnswers = correctAnswers;
 	}
+	public String  getAllCorectAnswerInAParagraf()
+	{
+		String answerParagraph=correctAnswers.get(0);
+		int size = this.correctAnswers.size();
+		for(int i=1;i<size;i++)
+		{
+			answerParagraph= answerParagraph+", "+ correctAnswers.get(i);
+		}
+		return answerParagraph;
+	}
 	
+	public String getAllUserAnswersInAParagraf()
+	{
+		String answerParagraph=myAnswers.get(0);
+		int size = this.myAnswers.size();
+		for(int i=1;i<size;i++)
+		{
+			answerParagraph= answerParagraph+", "+ myAnswers.get(i);
+		}
+		return answerParagraph;
+	}
 	
 	
 }

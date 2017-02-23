@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestReport {
@@ -9,6 +10,8 @@ public class TestReport {
 
 	public TestReport() {
 		super();
+		testItems = new ArrayList<>();
+		score=0;
 	}
 
 	public List<Item> getTestItems() {

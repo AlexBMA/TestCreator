@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import database.DB;
 import model.Test;
+import model.TestReport;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
@@ -48,9 +49,10 @@ public class TakeTestServlet extends HttpServlet {
 		final String NEXT_PAGE_NAME="TakeTest";
 		String  path=pathCreator.createPath(NEXT_PAGE_NAME);	
 		
-		
+		TestReport testReport = new TestReport();
 		request.setAttribute("currentquestion", indexOfCurrentQuestion);
 		HttpSession theSession = request.getSession(false);
+		theSession.setAttribute("testreport", testReport);
 		theSession.setAttribute("test", test);
 		
 			

@@ -1,6 +1,7 @@
 package studentServlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Answer;
+import model.Item;
 import model.Question;
 import model.Test;
 import model.TestReport;
@@ -47,7 +49,7 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 		HttpSession theSession = request.getSession(false);
 		Test localTest = (Test) theSession.getAttribute("test");
 
-		//TestReport testReport = 
+		// TestReport testReport =
 
 		getAndCheckAnswer(request, currentIndex, localTest);
 
@@ -61,7 +63,7 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 			NEXT_PAGE_NAME = "TestScore";
 			path = pathCreator.createPath(NEXT_PAGE_NAME);
 		}
-		
+
 		request.setAttribute("currentquestion", indexOfCurrentQuestion);
 
 		RequestDispatcher reqDispacher = request.getRequestDispatcher(path);
@@ -70,70 +72,79 @@ public class SwitchQuestionBackSerlvet extends HttpServlet {
 
 	public void getAndCheckAnswer(HttpServletRequest request, int currentIndex, Test localTest) {
 
-		
-
 		Question theQuestion = localTest.getListQuestions().get(currentIndex);
 
 		Enumeration<String> attributeNames = request.getParameterNames();
 
-		String radioQuestionAnswer = "radioanswer";
-		String checkQuestionAnswer = "checkanswer";
+		checkUserAnswers(request, theQuestion, attributeNames);
 
+	}
+
+	public void checkUserAnswers(HttpServletRequest request, Question theQuestion, Enumeration<String> paramNames) {
+		
 		List<Answer> answerList = theQuestion.getListAnswersi();
+		List<String> paramName = new ArrayList<>();
+
+		getParmeters(paramNames, paramName);
+
+		List<String> userAnswerText = new ArrayList<>();
 		
+		getUserAnswersText(request, paramName, userAnswerText);
 		
 
-		while (attributeNames.hasMoreElements()) {
-			String name = attributeNames.nextElement();
-
-			if (name.contains(radioQuestionAnswer)) {
-
-				if (checkAnswer(request, theQuestion, answerList, 1)) {
-					System.out.println("Q radio was answerd correct");
-					
+		int numberOfCorrectAnswers = theQuestion.getNumberOfCorrectAnswers();
+		int numberOfCorrectAnswersFromUser = 0;
+		
+		int size = answerList.size();
+		int size2 = userAnswerText.size();
+		List<String> correctAnswers = new ArrayList<>();
+		
+		for (int i = 0; i < size; i++) {
+			Answer tempAnswer = answerList.get(i);
+			if (tempAnswer.getTrueFalse() == 1) {
+				correctAnswers.add(tempAnswer.getAnswerText());
+				for (int j = 0; j < size2; j++) {
+					if (tempAnswer.getAnswerText().equalsIgnoreCase(userAnswerText.get(j))) {
+						numberOfCorrectAnswersFromUser++;
+					}
 				}
-
 			}
-			if (name.contains(checkQuestionAnswer)) {
-				if (checkAnswer(request, theQuestion, answerList, 2)) {
-					System.out.println("Q check  was answerd correct");
-					
-				}
-			}
-
 		}
+
+		HttpSession theSession = request.getSession(false);
+		TestReport testReport = (TestReport)theSession.getAttribute("testreport");
+		
+		List<Item> testItem = testReport.getTestItems();
+		Item tempItem = new Item();
+		tempItem.setQuestionText(theQuestion.getQuestionText());
+		tempItem.setMyAnswers(userAnswerText);
+		tempItem.setCorrectAnswers(correctAnswers);
+		testItem.add(tempItem);
+		testReport.setTestItems(testItem);
+		
+		if (numberOfCorrectAnswersFromUser == numberOfCorrectAnswers) {
+			testReport.setScore((testReport.getScore()+1));
+		} 
+		
+		theSession.setAttribute("testreport", testReport);
+		
 		
 	}
 
-	public boolean checkAnswer(HttpServletRequest request, Question theQuestion, List<Answer> answerList, int mode) {
+	public void getUserAnswersText(HttpServletRequest request, List<String> paramName, List<String> userAnswerText) {
+		int size = paramName.size();
+		for (int i = 0; i < size; i++) {
 
-		int numberOfAnswers = theQuestion.getNumberOfAnswers();
-		int numberOfCorrectAnswers = theQuestion.getNumberOfCorrectAnswers();
-
-		int answers = 0;
-
-		for (int i = 0; i < numberOfAnswers; i++) {
-			Answer answer = answerList.get(i);
-
-			if (answer.getTrueFalse() == 1 && mode == 1) {
-
-				if (answer.getAnswerText().equals(request.getParameter("radioanswer" + i))) {
-					answers++;
-				}
-			}
-
-			if (answer.getTrueFalse() == 1 && mode == 2) {
-				if (answer.getAnswerText().equals(request.getParameter("checkanswer" + i))) {
-					answers++;
-				}
+			if (!paramName.get(i).equalsIgnoreCase("index")) {
+				userAnswerText.add(request.getParameter(paramName.get(i)));
 			}
 		}
+	}
 
-		if (answers == numberOfCorrectAnswers)
-			return true;
-
-		return false;
-
+	public void getParmeters(Enumeration<String> attributeNames, List<String> paramName) {
+		while (attributeNames.hasMoreElements()) {
+			paramName.add(attributeNames.nextElement());
+		}
 	}
 
 	/**

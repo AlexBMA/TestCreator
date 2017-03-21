@@ -47,12 +47,11 @@
 						for(Answer a:listAnswers)
 							{
 							%>
-						 
-							 
-								<label><%=a.getAnswerText() %></label>
-								<label><% if(a.getTrueFalse()==1) out.print("<ins>correct</ins>"); else out.print("false"); %></label>
+						 	<br/>
 							
-							
+								
+								<label><% if(a.getTrueFalse()==1) out.print("<b>"+ a.getAnswerText()+" correct"+"</b>"); else out.print(a.getAnswerText()+"  false"); %></label>
+							<br/>
 									
 						<%
 							}

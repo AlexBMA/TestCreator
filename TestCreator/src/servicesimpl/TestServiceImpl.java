@@ -1,4 +1,4 @@
-package services;
+package servicesimpl;
 
 
 import java.util.List;
@@ -8,19 +8,20 @@ import org.hibernate.SessionFactory;
 
 
 import database.DAOOperations;
-import database.QuestionDAO;
-import database.TestDAO;
+import database.QuestionDAOImpl;
+import database.TestDAOImpl;
 import model.Question;
 import model.Test;
+import services.BasicService;
 
 
-public class TestService implements BasicService<Test>  {
+public class TestServiceImpl implements BasicService<Test>  {
 
 	@Override
 	public Test getItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Test> testOpearions = new TestDAO();
-		BasicService<Question> questionService = new QuestionService();
+		DAOOperations<Test> testOpearions = new TestDAOImpl();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		
 	
 		Test test = testOpearions.getARow(factory, id);
@@ -35,7 +36,7 @@ public class TestService implements BasicService<Test>  {
 	@Override
 	public List<Test> getAllItems(SessionFactory factory) {
 		
-		DAOOperations<Test> testOpearions = new TestDAO();
+		DAOOperations<Test> testOpearions = new TestDAOImpl();
 		
 		List<Test> testList = testOpearions.getAllRow(factory);
 		
@@ -46,9 +47,9 @@ public class TestService implements BasicService<Test>  {
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		DAOOperations<Test> testOpearions = new TestDAO();
+		DAOOperations<Test> testOpearions = new TestDAOImpl();
 		
-		BasicService<Question> questionService = new QuestionService();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		
 		Test test = testOpearions.getARow(factory, id);
 		List<Question> questionList = questionService.getSimilarItems(factory, test.getId());
@@ -72,10 +73,10 @@ public class TestService implements BasicService<Test>  {
 	@Override
 	public void createItem(SessionFactory factory, Test item) {
 		
-		DAOOperations<Test> testOpearions = new TestDAO();
+		DAOOperations<Test> testOpearions = new TestDAOImpl();
 
 		List<Question> listQuestion = item.getListQuestions();
-		BasicService<Question> questionService = new QuestionService();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		
 		for(Question q:listQuestion){
 			questionService.createItem(factory, q);

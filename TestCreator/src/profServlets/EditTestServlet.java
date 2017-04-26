@@ -15,7 +15,7 @@ import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class EditTestServlet
@@ -50,7 +50,7 @@ public class EditTestServlet extends HttpServlet {
 		}
 		
 		
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		test.setNumberOfQuestions(test.getListQuestions().size());

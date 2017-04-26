@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import database.DAOOperations;
-import database.UserDAO;
+import database.UserDAOImpl;
 import model.User;
 import services.BasicService;
 
@@ -15,7 +15,7 @@ public class LoginService {
 	private User user;
 
 	public boolean checkUsernameAndPass(SessionFactory factory, String username, String pass) {
-		UserDAO dbOperation = new UserDAO();
+		UserDAOImpl dbOperation = new UserDAOImpl();
 
 		 user = dbOperation.checkUserAndPass(factory, username, pass);
 

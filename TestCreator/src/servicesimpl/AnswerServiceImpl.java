@@ -1,19 +1,20 @@
-package services;
+package servicesimpl;
 
 
 import java.util.List;
 import org.hibernate.SessionFactory;
 import database.DAOOperations;
-import database.AnswerDAO;
+import database.AnswerDAOImpl;
 import model.Answer;
+import services.BasicService;
 
 
-public class AnswerService implements BasicService<Answer> {
+public class AnswerServiceImpl implements BasicService<Answer> {
 
 	@Override
 	public Answer getItem(SessionFactory factory, int id) {
 
-		DAOOperations<Answer>answerOpearions = new AnswerDAO();
+		DAOOperations<Answer>answerOpearions = new AnswerDAOImpl();
 		
 		return answerOpearions.getARow(factory, id);
 		
@@ -30,7 +31,7 @@ public class AnswerService implements BasicService<Answer> {
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Answer>answerOpearions = new AnswerDAO();
+		DAOOperations<Answer>answerOpearions = new AnswerDAOImpl();
 		answerOpearions.deleteRow(factory, id);
 	}
 
@@ -44,7 +45,7 @@ public class AnswerService implements BasicService<Answer> {
 	@Override
 	public void createItem(SessionFactory factory, Answer item) {
 		
-			DAOOperations<Answer>answerOpearions = new AnswerDAO();
+			DAOOperations<Answer>answerOpearions = new AnswerDAOImpl();
 			answerOpearions.insert(factory, item);
 		
 	}

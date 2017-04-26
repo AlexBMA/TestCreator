@@ -16,7 +16,7 @@ import model.TestReport;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class TakeTestServlet
@@ -39,7 +39,7 @@ public class TakeTestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		

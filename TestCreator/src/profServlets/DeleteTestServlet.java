@@ -14,7 +14,7 @@ import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class DeleteTestServlet
@@ -45,7 +45,7 @@ public class DeleteTestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		 testService.deleteItem(DB.getSessionFactory(), testId);
 

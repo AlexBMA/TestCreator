@@ -15,7 +15,7 @@ import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class ShowTestStudentServlet
@@ -39,7 +39,7 @@ public class ShowTestStudentServlet extends HttpServlet {
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
 		
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		List<Test> testList = testService.getAllItems(DB.getSessionFactory());
 		

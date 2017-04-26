@@ -16,7 +16,7 @@ import model.Answer;
 import model.Question;
 import oracle.net.aso.q;
 import services.BasicService;
-import services.QuestionService;
+import servicesimpl.QuestionServiceImpl;
 
 /**
  * Servlet implementation class SaveEidtQuestionServlet
@@ -79,7 +79,7 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		question.setNumberOfAnswers(nrOfTotalAnswers);
 		
 		
-		BasicService<Question> questionService = new QuestionService();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		questionService.createItem(DB.getSessionFactory(), question);
 		
 		String NEXT_PAGE ="EditTestServlet";

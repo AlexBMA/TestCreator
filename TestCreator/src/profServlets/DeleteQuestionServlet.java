@@ -13,8 +13,8 @@ import database.DB;
 import model.Question;
 import model.Test;
 import services.BasicService;
-import services.QuestionService;
-import services.TestService;
+import servicesimpl.QuestionServiceImpl;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class DeleteQuestionServlet
@@ -47,7 +47,7 @@ public class DeleteQuestionServlet extends HttpServlet {
 		int questionId =Integer.parseInt(request.getParameter("questionid").trim());
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Question> questionService = new QuestionService();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		questionService.deleteItem(DB.getSessionFactory(), questionId);
 		
 		

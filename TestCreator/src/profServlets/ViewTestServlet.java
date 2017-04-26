@@ -14,7 +14,7 @@ import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 /**
  * Servlet implementation class ViewTestServlet
@@ -39,7 +39,7 @@ public class ViewTestServlet extends HttpServlet {
 		
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		

@@ -16,7 +16,7 @@ import model.User;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.TestService;
+import servicesimpl.TestServiceImpl;
 
 
 /**
@@ -48,7 +48,7 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 			
 		//	String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
-		BasicService<Test> testService = new TestService();
+		BasicService<Test> testService = new TestServiceImpl();
 		
 		HttpSession theSession = request.getSession(false);
 		

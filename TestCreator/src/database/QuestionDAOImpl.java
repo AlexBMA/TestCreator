@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import model.Question;
 import model.Test;
 
-public class QuestionDAO implements DAOOperations<Question> {
+public class QuestionDAOImpl implements DAOOperations<Question> {
 
 
 	@Override

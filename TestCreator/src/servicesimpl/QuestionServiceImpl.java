@@ -1,23 +1,24 @@
-package services;
+package servicesimpl;
 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 
 import database.DAOOperations;
-import database.QuestionDAO;
+import database.QuestionDAOImpl;
 
 import model.Answer;
 import model.Question;
+import services.BasicService;
 
 
 
-public class QuestionService implements BasicService<Question>{
+public class QuestionServiceImpl implements BasicService<Question>{
 
 	@Override
 	public Question getItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAO();
+		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
 		
 		//BasicService<Answer> answerService = new AnswerService();
 		
@@ -44,12 +45,12 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAO();
+		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
 		
 		Question item = questionOpearions.getARow(factory, id);
 		
 		List<Answer> listAnswer = item.getListAnswersi();
-		BasicService<Answer>answerService = new AnswerService();
+		BasicService<Answer>answerService = new AnswerServiceImpl();
 		
 		for(Answer a:listAnswer)
 		{
@@ -62,10 +63,10 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public void createItem(SessionFactory factory, Question item) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAO();
+		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
 		
 		List<Answer> listAnswer = item.getListAnswersi();
-		BasicService<Answer>answerService = new AnswerService();
+		BasicService<Answer>answerService = new AnswerServiceImpl();
 		
 		for(Answer a: listAnswer)
 		{
@@ -79,7 +80,7 @@ public class QuestionService implements BasicService<Question>{
 	@Override
 	public List<Question> getSimilarItems(SessionFactory factory, int idSimilar) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAO();
+		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
 		List<Question> questionList = questionOpearions.getAllSimilarRows(factory, idSimilar);
 		
 		return questionList;

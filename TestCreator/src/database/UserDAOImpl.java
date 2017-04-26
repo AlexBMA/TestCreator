@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 
 import model.User;
 
-public class UserDAO implements DAOOperations<User> {
+public class UserDAOImpl implements DAOOperations<User> {
 
 	@Override
 	public void insert(SessionFactory theSessionFactory, User ob) {

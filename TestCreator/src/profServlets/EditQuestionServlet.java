@@ -14,7 +14,7 @@ import model.Question;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
 import services.PathCreatorPrefixAndSufixImpl;
-import services.QuestionService;
+import servicesimpl.QuestionServiceImpl;
 
 /**
  * Servlet implementation class EditQuestionServlet
@@ -39,7 +39,7 @@ public class EditQuestionServlet extends HttpServlet {
 		int questionId =Integer.parseInt(request.getParameter("questionid").trim());
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Question> questionService = new QuestionService();
+		BasicService<Question> questionService = new QuestionServiceImpl();
 		
 		Question question = questionService.getItem(DB.getSessionFactory(), questionId);
 		

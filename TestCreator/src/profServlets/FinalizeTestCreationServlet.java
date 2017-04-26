@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import model.User;
 import services.BasicService;
@@ -48,7 +49,7 @@ public class FinalizeTestCreationServlet extends HttpServlet {
 			
 		//	String fileName="D:\\git\\TestCreator\\TestCreator\\fisiereXml";
 		
-		BasicService<Test> testService = new TestServiceImpl();
+		BasicService<Test> testService = ServiceFactory.getService("Test");
 		
 		HttpSession theSession = request.getSession(false);
 		

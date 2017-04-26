@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
@@ -40,11 +41,8 @@ public class ShowTestsProfServlet extends HttpServlet {
 		//String filePath="D:\\git\\TestCreator\\TestCreator\\fisiereXml\\Test.xml";
 		
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();
-		
-		
-		BasicService<Test> testService = new TestServiceImpl();
-		
-		List<Test> testList = testService.getAllItems(DB.getSessionFactory());
+				
+		List<Test> testList = ServiceFactory.getService("Test").getAllItems(DB.getSessionFactory());
 		
 		
 		final String  NEXT_PAGE_NAME ="ShowTests";

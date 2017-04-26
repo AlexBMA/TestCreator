@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Answer;
 import model.Question;
 import oracle.net.aso.q;
@@ -79,8 +80,7 @@ public class SaveEidtQuestionServlet extends HttpServlet {
 		question.setNumberOfAnswers(nrOfTotalAnswers);
 		
 		
-		BasicService<Question> questionService = new QuestionServiceImpl();
-		questionService.createItem(DB.getSessionFactory(), question);
+		ServiceFactory.getService("Question").createItem(DB.getSessionFactory(), question);
 		
 		String NEXT_PAGE ="EditTestServlet";
 		

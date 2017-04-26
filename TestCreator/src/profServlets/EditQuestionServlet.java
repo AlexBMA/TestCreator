@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Question;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
@@ -39,7 +40,7 @@ public class EditQuestionServlet extends HttpServlet {
 		int questionId =Integer.parseInt(request.getParameter("questionid").trim());
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Question> questionService = new QuestionServiceImpl();
+		BasicService<Question> questionService = ServiceFactory.getService("Question");
 		
 		Question question = questionService.getItem(DB.getSessionFactory(), questionId);
 		

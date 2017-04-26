@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
@@ -39,9 +40,9 @@ public class ViewTestServlet extends HttpServlet {
 		
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Test> testService = new TestServiceImpl();
+		//BasicService<Test> testService = new TestServiceImpl();
 		
-		Test test = testService.getItem(DB.getSessionFactory(), testId);
+		Test test = (Test) ServiceFactory.getService("Test").getItem(DB.getSessionFactory(), testId);
 		
 		
 				

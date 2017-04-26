@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
@@ -45,7 +46,7 @@ public class DeleteTestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Test> testService = new TestServiceImpl();
+		BasicService<Test> testService = ServiceFactory.getService("Test");
 		
 		 testService.deleteItem(DB.getSessionFactory(), testId);
 

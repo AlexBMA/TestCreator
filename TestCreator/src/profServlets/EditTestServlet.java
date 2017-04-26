@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import services.BasicService;
 import services.PathCreatorPrefixAndSufix;
@@ -50,7 +51,7 @@ public class EditTestServlet extends HttpServlet {
 		}
 		
 		
-		BasicService<Test> testService = new TestServiceImpl();
+		BasicService<Test> testService = ServiceFactory.getService("Test");
 		
 		Test test = testService.getItem(DB.getSessionFactory(), testId);
 		test.setNumberOfQuestions(test.getListQuestions().size());

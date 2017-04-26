@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 
 import database.DAOOperations;
 import database.QuestionDAOImpl;
-
+import factorypack.DAOFactory;
+import factorypack.ServiceFactory;
 import model.Answer;
 import model.Question;
 import services.BasicService;
@@ -14,43 +15,33 @@ import services.BasicService;
 
 
 public class QuestionServiceImpl implements BasicService<Question>{
+	
+	private static final String CLASS_NAME = "Question";
 
 	@Override
 	public Question getItem(SessionFactory factory, int id) {
-		
-		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
-		
-		//BasicService<Answer> answerService = new AnswerService();
-		
-		Question q = questionOpearions.getARow(factory, id);
-		//List<Answer> listAnswer = q.getListAnswersi();
-		
-		
-		
-		return q;
+		return (Question) DAOFactory.getDAO(CLASS_NAME).getARow(factory, id);
 	}
 
 	@Override
 	public List<Question> getAllItems(SessionFactory factory) {
-		// TODO Auto-generated method stub
-		return null;
+		return DAOFactory.getDAO(CLASS_NAME).getAllRow(factory);
 	}
 
 	@Override
 	public void editItem(SessionFactory factory) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
+		DAOOperations<Question> questionOpearions = DAOFactory.getDAO(CLASS_NAME);
 		
 		Question item = questionOpearions.getARow(factory, id);
 		
 		List<Answer> listAnswer = item.getListAnswersi();
-		BasicService<Answer>answerService = new AnswerServiceImpl();
+		BasicService<Answer>answerService = ServiceFactory.getService("Answer");
 		
 		for(Answer a:listAnswer)
 		{
@@ -63,27 +54,23 @@ public class QuestionServiceImpl implements BasicService<Question>{
 	@Override
 	public void createItem(SessionFactory factory, Question item) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
-		
 		List<Answer> listAnswer = item.getListAnswersi();
-		BasicService<Answer>answerService = new AnswerServiceImpl();
+		
+		BasicService<Answer>answerService = ServiceFactory.getService("Answer");
 		
 		for(Answer a: listAnswer)
 		{
 			answerService.createItem(factory, a);
 		}
 		
-		questionOpearions.insert(factory, item);
+		DAOFactory.getDAO(CLASS_NAME).insert(factory, item);
 		
 	}
 
 	@Override
 	public List<Question> getSimilarItems(SessionFactory factory, int idSimilar) {
 		
-		DAOOperations<Question> questionOpearions = new QuestionDAOImpl();
-		List<Question> questionList = questionOpearions.getAllSimilarRows(factory, idSimilar);
-		
-		return questionList;
+		return DAOFactory.getDAO(CLASS_NAME).getAllSimilarRows(factory, idSimilar);
 	}
 	
 	

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Question;
 import model.Test;
 import services.BasicService;
@@ -47,7 +48,7 @@ public class DeleteQuestionServlet extends HttpServlet {
 		int questionId =Integer.parseInt(request.getParameter("questionid").trim());
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		
-		BasicService<Question> questionService = new QuestionServiceImpl();
+		BasicService<Question> questionService = ServiceFactory.getService("Question");
 		questionService.deleteItem(DB.getSessionFactory(), questionId);
 		
 		

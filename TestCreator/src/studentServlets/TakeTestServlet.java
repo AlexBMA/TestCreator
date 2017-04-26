@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import database.DB;
+import factorypack.ServiceFactory;
 import model.Test;
 import model.TestReport;
 import services.BasicService;
@@ -41,7 +42,8 @@ public class TakeTestServlet extends HttpServlet {
 		int testId = Integer.parseInt(request.getParameter("testid").trim());
 		BasicService<Test> testService = new TestServiceImpl();
 		
-		Test test = testService.getItem(DB.getSessionFactory(), testId);
+	  
+		Test test = (Test) ServiceFactory.getService("Test").getItem(DB.getSessionFactory(), testId);
 		
 		int indexOfCurrentQuestion = 0;
 		PathCreatorPrefixAndSufix  pathCreator = new PathCreatorPrefixAndSufixImpl();

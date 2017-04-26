@@ -10,18 +10,22 @@ import org.hibernate.SessionFactory;
 import database.DAOOperations;
 import database.QuestionDAOImpl;
 import database.TestDAOImpl;
+import factorypack.DAOFactory;
+import factorypack.ServiceFactory;
 import model.Question;
 import model.Test;
 import services.BasicService;
 
 
 public class TestServiceImpl implements BasicService<Test>  {
+	
+	private static final String CLASS_NAME = "Test";
 
 	@Override
 	public Test getItem(SessionFactory factory, int id) {
 		
-		DAOOperations<Test> testOpearions = new TestDAOImpl();
-		BasicService<Question> questionService = new QuestionServiceImpl();
+		DAOOperations<Test> testOpearions = DAOFactory.getDAO(CLASS_NAME);
+		BasicService<Question> questionService = ServiceFactory.getService("Question");
 		
 	
 		Test test = testOpearions.getARow(factory, id);
@@ -35,21 +39,17 @@ public class TestServiceImpl implements BasicService<Test>  {
 
 	@Override
 	public List<Test> getAllItems(SessionFactory factory) {
-		
-		DAOOperations<Test> testOpearions = new TestDAOImpl();
-		
-		List<Test> testList = testOpearions.getAllRow(factory);
-		
-		return testList;
+	
+		return DAOFactory.getDAO(CLASS_NAME).getAllRow(factory);
 	}
 
 	
 
 	@Override
 	public void deleteItem(SessionFactory factory, int id) {
-		DAOOperations<Test> testOpearions = new TestDAOImpl();
+		DAOOperations<Test> testOpearions = DAOFactory.getDAO(CLASS_NAME);
 		
-		BasicService<Question> questionService = new QuestionServiceImpl();
+		BasicService<Question> questionService = ServiceFactory.getService("Question");
 		
 		Test test = testOpearions.getARow(factory, id);
 		List<Question> questionList = questionService.getSimilarItems(factory, test.getId());
@@ -73,10 +73,10 @@ public class TestServiceImpl implements BasicService<Test>  {
 	@Override
 	public void createItem(SessionFactory factory, Test item) {
 		
-		DAOOperations<Test> testOpearions = new TestDAOImpl();
+		DAOOperations<Test> testOpearions =DAOFactory.getDAO(CLASS_NAME);
 
 		List<Question> listQuestion = item.getListQuestions();
-		BasicService<Question> questionService = new QuestionServiceImpl();
+		BasicService<Question> questionService = ServiceFactory.getService("Question");
 		
 		for(Question q:listQuestion){
 			questionService.createItem(factory, q);
@@ -88,8 +88,7 @@ public class TestServiceImpl implements BasicService<Test>  {
 
 	@Override
 	public List<Test> getSimilarItems(SessionFactory factory, int idSimilar) {
-		// TODO Auto-generated method stub
-		return null;
+		return DAOFactory.getDAO(CLASS_NAME).getAllSimilarRows(factory, idSimilar);
 	}
 
 	

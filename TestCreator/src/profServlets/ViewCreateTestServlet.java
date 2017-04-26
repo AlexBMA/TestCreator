@@ -14,13 +14,13 @@ import services.PathCreatorPrefixAndSufixImpl;
  * Servlet implementation class MakeNewTestServlet
  */
 @WebServlet("/MakeNewTestServlet")
-public class MakeNewTestServlet extends HttpServlet {
+public class ViewCreateTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeNewTestServlet() {
+    public ViewCreateTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -22,13 +22,13 @@ import services.impl.TestServiceImpl;
  * Servlet implementation class VizualizeazaTeste
  */
 @WebServlet("/VizualizeazaTeste")
-public class ShowTestsProfServlet extends HttpServlet {
+public class ViewTestsProfServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowTestsProfServlet() {
+    public ViewTestsProfServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

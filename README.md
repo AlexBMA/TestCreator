@@ -1,2 +1,2 @@
 # TestCreator
-O aplicatie web de create teste, facuta in java
+A simple web app made with java to create quizzes
